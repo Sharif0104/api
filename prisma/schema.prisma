@@ -1,0 +1,177 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            Int       @id @default(autoincrement())
+  email         String    @unique
+  password      String
+  name          String
+  emailVerified Boolean   @default(false)
+  createdAt     DateTime  @default(now())
+  otps          Otp[]
+  sessions      Session[]
+  bookings      Booking[]
+  twoFactorSecret String? // Field added for 2FA setup
+
+  sentRequests    FriendRequest[]  @relation("SentRequests")
+  receivedRequests FriendRequest[] @relation("ReceivedRequests")
+}
+
+model Otp {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  otp       String
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Session {
+  id           Int      @id @default(autoincrement())
+  userId       Int
+  token        String
+  refreshToken String? // Field to store the refresh token
+  createdAt    DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+}
+
+model Shop {
+  id           Int          @id @default(autoincrement())
+  name         String
+  location     String
+  timeSlots    TimeSlot[]
+  bookings     Booking[]
+  availability ShopAvailability[]
+  inventories  Inventory[]  // Relation to Inventory model
+}
+
+model TimeSlot {
+  id           Int                @id @default(autoincrement())
+  hour         Int
+  minute       Int
+  date         DateTime
+  shopId       Int
+  shop         Shop               @relation(fields: [shopId], references: [id])
+  availability ShopAvailability[] @relation("TimeSlotAvailability")
+
+  @@unique([shopId, date, hour, minute])
+}
+
+model Booking {
+  id          Int      @id @default(autoincrement())
+  userId      Int
+  shopId      Int
+  date        DateTime
+  hour        Int
+  user        User     @relation(fields: [userId], references: [id])
+  shop        Shop     @relation(fields: [shopId], references: [id])
+  availabilityId Int
+  availability  ShopAvailability @relation("AvailabilityBookings", fields: [availabilityId], references: [id])
+  createdAt   DateTime @default(now())
+}
+
+
+model ShopAvailability {
+  id         Int      @id @default(autoincrement())
+  shopId     Int
+  timeSlotId Int
+  shop       Shop     @relation(fields: [shopId], references: [id])
+  timeSlot   TimeSlot @relation(fields: [timeSlotId], references: [id], name: "TimeSlotAvailability")
+  bookings   Booking[] @relation("AvailabilityBookings")
+  @@unique([shopId, timeSlotId])
+}
+
+model Job {
+  id        Int      @id @default(autoincrement())
+  jobId     String   @unique
+  status    String
+  result    Json?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Product {
+  id          Int      @id @default(autoincrement())
+  name        String
+  price       Float
+  description String?
+  createdAt   DateTime @default(now())
+}
+
+model Log {
+  id        Int      @id @default(autoincrement())
+  message   String
+  level     String
+  createdAt DateTime @default(now())
+}
+
+model Config {
+  key   String @id
+  value String
+}
+
+model Upload {
+  id           String   @id @default(cuid())
+  type         String   // 'avatar' | 'document'
+  path         String
+  originalName String
+  metadata     Json?    // Field to store metadata
+  createdAt    DateTime @default(now())
+}
+
+model FriendRequest {
+  id         Int      @id @default(autoincrement())
+  senderId   Int
+  receiverId Int
+  status     String   // e.g., "pending", "accepted"
+
+  sender     User     @relation("SentRequests", fields: [senderId], references: [id])
+  receiver   User     @relation("ReceivedRequests", fields: [receiverId], references: [id])
+  createdAt  DateTime @default(now())
+
+  @@unique([senderId, receiverId])
+}
+
+model Conversation {
+  id        Int      @id @default(autoincrement())
+  user1Id   Int
+  user2Id   Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  messages  Message[]
+}
+
+model Message {
+  id           Int       @id @default(autoincrement())
+  conversation Conversation @relation(fields: [conversationId], references: [id])
+  conversationId Int
+  userId       Int
+  content      String
+  createdAt    DateTime  @default(now())
+}
+
+model Inventory {
+  id       Int     @id @default(autoincrement())
+  name     String
+  quantity Int
+  price    Float
+  shopId   Int?    // Temporarily optional
+  shop     Shop?   @relation(fields: [shopId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

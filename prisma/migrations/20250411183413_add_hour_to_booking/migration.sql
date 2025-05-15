@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Booking" ADD COLUMN     "hour" INTEGER NOT NULL DEFAULT 0;

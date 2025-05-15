@@ -1,0 +1,1268 @@
+2025-05-11T17:04:26.930Z - Server running on port 2637
+2025-05-11T17:04:26.985Z - Database connected
+2025-05-11T17:04:34.009Z - Email provided for login:
+2025-05-11T17:06:25.452Z - Server running on port 2637
+2025-05-11T17:06:25.508Z - Database connected
+2025-05-11T17:06:30.090Z - Server running on port 2637
+2025-05-11T17:06:30.152Z - Database connected
+2025-05-11T17:06:35.364Z - Email provided for login:
+2025-05-11T17:06:35.364Z - Request body:
+2025-05-11T17:08:19.002Z - Server running on port 2637
+2025-05-11T17:08:19.055Z - Database connected
+2025-05-11T17:08:23.906Z - Middleware executed. Request body:
+2025-05-11T17:08:23.909Z - Email provided for login:
+2025-05-11T17:08:23.909Z - Request body:
+2025-05-11T17:10:59.749Z - Server running on port 2637
+2025-05-11T17:10:59.806Z - Database connected
+2025-05-11T17:11:05.773Z - Middleware executed. Request body:
+2025-05-11T17:11:05.776Z - x-api-key header:
+2025-05-11T17:11:05.776Z - Expected API_KEY:
+2025-05-11T17:11:05.776Z - Email provided for login:
+2025-05-11T17:11:05.777Z - Request body:
+2025-05-11T17:12:28.420Z - Middleware executed. Request body:
+2025-05-11T17:12:28.420Z - x-api-key header:
+2025-05-11T17:12:28.420Z - Expected API_KEY:
+2025-05-11T17:12:37.820Z - Environment variables:
+2025-05-11T17:12:37.874Z - Server running on port 2637
+2025-05-11T17:12:37.939Z - Database connected
+2025-05-11T17:14:35.174Z - Middleware executed. Request body:
+2025-05-11T17:14:35.177Z - x-api-key header:
+2025-05-11T17:14:35.177Z - Expected API_KEY:
+2025-05-11T17:14:35.178Z - Echo endpoint hit. Request body:
+2025-05-11T17:15:50.680Z - Middleware executed. Request body:
+2025-05-11T17:15:50.680Z - x-api-key header:
+2025-05-11T17:15:50.681Z - Expected API_KEY:
+2025-05-11T17:15:50.681Z - Email provided for login:
+2025-05-11T17:15:50.681Z - Request body:
+2025-05-11T17:16:11.587Z - Environment variables:
+2025-05-11T17:16:11.626Z - Server running on port 2637
+2025-05-11T17:16:11.691Z - Database connected
+2025-05-11T17:16:15.535Z - Middleware executed. Request body:
+2025-05-11T17:16:15.537Z - x-api-key header:
+2025-05-11T17:16:15.537Z - Expected API_KEY:
+2025-05-11T17:16:15.538Z - Email provided for login:
+2025-05-11T17:16:15.538Z - Request body:
+2025-05-11T17:16:15.538Z - findUserByEmail called with email:
+2025-05-11T17:16:27.893Z - Middleware executed. Request body:
+2025-05-11T17:16:27.893Z - x-api-key header:
+2025-05-11T17:16:27.894Z - Expected API_KEY:
+2025-05-11T17:16:27.894Z - Email provided for login:
+2025-05-11T17:16:27.894Z - Request body:
+2025-05-11T17:16:27.894Z - findUserByEmail called with email:
+2025-05-11T17:18:28.188Z - Middleware executed. Request body:
+2025-05-11T17:18:28.188Z - x-api-key header:
+2025-05-11T17:18:28.188Z - Expected API_KEY:
+2025-05-11T17:18:28.188Z - Email provided for login:
+2025-05-11T17:18:28.188Z - Request body:
+2025-05-11T17:18:28.188Z - findUserByEmail called with email:
+2025-05-11T17:20:52.888Z - Middleware executed. Request body:
+2025-05-11T17:20:52.888Z - x-api-key header:
+2025-05-11T17:20:52.889Z - Expected API_KEY:
+2025-05-11T17:20:52.889Z - Email provided for login:
+2025-05-11T17:20:52.889Z - Request body:
+2025-05-11T17:20:52.889Z - findUserByEmail called with email:
+2025-05-11T17:21:05.342Z - Middleware executed. Request body:
+2025-05-11T17:21:05.342Z - x-api-key header:
+2025-05-11T17:21:05.342Z - Expected API_KEY:
+2025-05-11T17:21:05.342Z - Email provided for login:
+2025-05-11T17:21:05.342Z - Request body:
+2025-05-11T17:21:05.343Z - findUserByEmail called with email:
+2025-05-11T17:23:21.803Z - Middleware executed. Request body:
+2025-05-11T17:23:21.803Z - x-api-key header:
+2025-05-11T17:23:21.804Z - Expected API_KEY:
+2025-05-11T17:24:18.571Z - Middleware executed. Request body:
+2025-05-11T17:24:18.571Z - x-api-key header:
+2025-05-11T17:24:18.571Z - Expected API_KEY:
+2025-05-11T17:24:56.957Z - Middleware executed. Request body:
+2025-05-11T17:24:56.957Z - x-api-key header:
+2025-05-11T17:24:56.958Z - Expected API_KEY:
+2025-05-11T17:24:56.958Z - Email provided for login:
+2025-05-11T17:24:56.958Z - Request body:
+2025-05-11T17:24:56.958Z - findUserByEmail called with email:
+2025-05-11T17:26:12.792Z - Middleware executed. Request body:
+2025-05-11T17:26:12.793Z - x-api-key header:
+2025-05-11T17:26:12.793Z - Expected API_KEY:
+2025-05-11T17:26:12.793Z - Email provided for login:
+2025-05-11T17:26:12.793Z - Request body:
+2025-05-11T17:26:12.793Z - findUserByEmail called with email:
+2025-05-11T17:26:29.712Z - Environment variables:
+2025-05-11T17:26:29.751Z - Server running on port 2637
+2025-05-11T17:26:29.809Z - Database connected
+2025-05-11T17:27:05.775Z - Middleware executed. Request body:
+2025-05-11T17:27:05.777Z - x-api-key header:
+2025-05-11T17:27:05.778Z - Expected API_KEY:
+2025-05-11T17:27:05.778Z - findUserByEmail called with email:
+2025-05-11T17:27:06.059Z - User retrieved from database:
+2025-05-11T17:27:06.059Z - Password comparison result:
+2025-05-11T17:27:17.182Z - Middleware executed. Request body:
+2025-05-11T17:27:17.182Z - x-api-key header:
+2025-05-11T17:27:17.182Z - Expected API_KEY:
+2025-05-11T17:27:17.182Z - findUserByEmail called with email:
+2025-05-11T17:27:17.392Z - User retrieved from database:
+2025-05-11T17:27:17.392Z - Password comparison result:
+2025-05-11T17:27:41.316Z - Middleware executed. Request body:
+2025-05-11T17:27:41.316Z - x-api-key header:
+2025-05-11T17:27:41.316Z - Expected API_KEY:
+2025-05-11T17:27:41.321Z - ERROR: Error in listActiveSessions:
+2025-05-11T17:27:53.826Z - Environment variables:
+2025-05-11T17:27:53.865Z - Server running on port 2637
+2025-05-11T17:27:53.918Z - Database connected
+2025-05-11T17:28:02.391Z - Middleware executed. Request body:
+2025-05-11T17:28:02.393Z - x-api-key header:
+2025-05-11T17:28:02.393Z - Expected API_KEY:
+2025-05-11T17:28:02.394Z - findUserByEmail called with email:
+2025-05-11T17:28:02.675Z - User retrieved from database:
+2025-05-11T17:28:02.676Z - Password comparison result:
+2025-05-11T17:28:06.226Z - Middleware executed. Request body:
+2025-05-11T17:28:06.226Z - x-api-key header:
+2025-05-11T17:28:06.226Z - Expected API_KEY:
+2025-05-11T17:28:06.231Z - ERROR: Error in listActiveSessions:
+2025-05-11T17:28:06.910Z - Middleware executed. Request body:
+2025-05-11T17:28:06.911Z - x-api-key header:
+2025-05-11T17:28:06.911Z - Expected API_KEY:
+2025-05-11T17:28:08.170Z - Middleware executed. Request body:
+2025-05-11T17:28:08.170Z - x-api-key header:
+2025-05-11T17:28:08.170Z - Expected API_KEY:
+2025-05-11T17:28:08.382Z - Middleware executed. Request body:
+2025-05-11T17:28:08.382Z - x-api-key header:
+2025-05-11T17:28:08.382Z - Expected API_KEY:
+2025-05-11T17:28:08.440Z - Middleware executed. Request body:
+2025-05-11T17:28:08.440Z - x-api-key header:
+2025-05-11T17:28:08.441Z - Expected API_KEY:
+2025-05-11T17:28:09.289Z - Middleware executed. Request body:
+2025-05-11T17:28:09.290Z - x-api-key header:
+2025-05-11T17:28:09.290Z - Expected API_KEY:
+2025-05-11T17:28:18.669Z - Middleware executed. Request body:
+2025-05-11T17:28:18.670Z - x-api-key header:
+2025-05-11T17:28:18.670Z - Expected API_KEY:
+2025-05-11T17:28:18.672Z - ERROR: Error in listActiveSessions:
+2025-05-11T17:29:34.472Z - Environment variables:
+2025-05-11T17:29:34.511Z - Server running on port 2637
+2025-05-11T17:29:34.581Z - Database connected
+2025-05-11T17:29:51.433Z - Environment variables:
+2025-05-11T17:29:51.480Z - Server running on port 2637
+2025-05-11T17:29:51.541Z - Database connected
+2025-05-11T17:29:54.885Z - Middleware executed. Request body:
+2025-05-11T17:29:54.887Z - x-api-key header:
+2025-05-11T17:29:54.888Z - Expected API_KEY:
+2025-05-11T17:29:54.888Z - findUserByEmail called with email:
+2025-05-11T17:29:55.166Z - User retrieved from database:
+2025-05-11T17:29:55.167Z - Password comparison result:
+2025-05-11T17:30:07.253Z - Middleware executed. Request body:
+2025-05-11T17:30:07.253Z - x-api-key header:
+2025-05-11T17:30:07.253Z - Expected API_KEY:
+2025-05-11T17:30:07.255Z - User ID for active sessions:
+2025-05-11T17:30:07.258Z - ERROR: Error in listActiveSessions:
+2025-05-11T17:37:10.262Z - Environment variables:
+2025-05-11T17:37:10.303Z - Server running on port 2637
+2025-05-11T17:37:10.359Z - Database connected
+2025-05-11T17:37:21.142Z - Middleware executed. Request body:
+2025-05-11T17:37:21.145Z - x-api-key header:
+2025-05-11T17:37:21.145Z - Expected API_KEY:
+2025-05-11T17:37:21.148Z - User ID for active sessions:
+2025-05-11T17:38:54.739Z - Middleware executed. Request body:
+2025-05-11T17:38:54.739Z - x-api-key header:
+2025-05-11T17:38:54.739Z - Expected API_KEY:
+2025-05-11T17:39:09.826Z - Environment variables:
+2025-05-11T17:39:09.865Z - Server running on port 2637
+2025-05-11T17:39:09.918Z - Database connected
+2025-05-11T17:39:17.112Z - Middleware executed. Request body:
+2025-05-11T17:39:17.115Z - x-api-key header:
+2025-05-11T17:39:17.115Z - Expected API_KEY:
+2025-05-11T17:39:17.116Z - findUserByEmail called with email:
+2025-05-11T17:39:17.395Z - User retrieved from database:
+2025-05-11T17:39:17.395Z - Password comparison result:
+2025-05-11T17:39:23.018Z - Middleware executed. Request body:
+2025-05-11T17:39:23.019Z - x-api-key header:
+2025-05-11T17:39:23.019Z - Expected API_KEY:
+2025-05-11T17:40:35.031Z - Middleware executed. Request body:
+2025-05-11T17:40:35.031Z - x-api-key header:
+2025-05-11T17:40:35.031Z - Expected API_KEY:
+2025-05-11T17:40:35.031Z - findUserByEmail called with email:
+2025-05-11T17:40:35.241Z - User retrieved from database:
+2025-05-11T17:40:35.241Z - Password comparison result:
+2025-05-11T17:40:48.350Z - Middleware executed. Request body:
+2025-05-11T17:40:48.351Z - x-api-key header:
+2025-05-11T17:40:48.351Z - Expected API_KEY:
+2025-05-11T17:40:48.351Z - findUserByEmail called with email:
+2025-05-11T17:40:48.560Z - User retrieved from database:
+2025-05-11T17:40:48.560Z - Password comparison result:
+2025-05-11T17:41:03.774Z - Middleware executed. Request body:
+2025-05-11T17:41:03.775Z - x-api-key header:
+2025-05-11T17:41:03.775Z - Expected API_KEY:
+2025-05-11T17:41:27.533Z - Middleware executed. Request body:
+2025-05-11T17:41:27.534Z - x-api-key header:
+2025-05-11T17:41:27.534Z - Expected API_KEY:
+2025-05-11T17:45:00.622Z - Server running on port 2637
+2025-05-11T17:45:00.678Z - Database connected
+2025-05-11T18:01:17.403Z - Server running on port 2637
+2025-05-11T18:01:17.466Z - Database connected
+2025-05-11T19:44:00.577Z - Server running on port 2637
+2025-05-11T19:44:00.649Z - Database connected
+2025-05-11T19:44:13.397Z - Server running on port 2637
+2025-05-11T19:44:13.463Z - Database connected
+2025-05-11T19:45:24.179Z - Server running on port 2637
+2025-05-11T19:45:24.245Z - Database connected
+2025-05-11T19:47:12.674Z - Server running on port 2637
+2025-05-11T19:47:12.738Z - Database connected
+2025-05-11T19:56:54.719Z - Server running on port 2637
+2025-05-11T19:56:54.785Z - Database connected
+2025-05-11T20:07:51.353Z - Server running on port 2637
+2025-05-11T20:07:51.419Z - Database connected
+2025-05-11T20:24:58.410Z - Server running on port 2637
+2025-05-11T20:24:58.665Z - Database connected
+2025-05-11T20:53:19.540Z - Server running on port 2637
+2025-05-11T20:53:19.606Z - Database connected
+2025-05-11T21:01:11.678Z - Server running on port 2637
+2025-05-11T21:01:11.746Z - Database connected
+2025-05-11T21:03:10.669Z - Server running on port 2637
+2025-05-11T21:03:10.739Z - Database connected
+2025-05-11T21:03:33.940Z - Server running on port 2637
+2025-05-11T21:03:34.004Z - Database connected
+2025-05-11T21:04:00.211Z - Server running on port 2637
+2025-05-11T21:04:00.281Z - Database connected
+2025-05-11T21:07:09.703Z - Server running on port 2637
+2025-05-11T21:07:09.769Z - Database connected
+2025-05-11T21:10:02.750Z - Server running on port 2637
+2025-05-11T21:10:02.814Z - Database connected
+2025-05-11T21:12:34.882Z - Server running on port 2637
+2025-05-11T21:12:34.953Z - Database connected
+2025-05-11T22:11:49.359Z - Server running on port 2637
+2025-05-11T22:11:49.425Z - Database connected
+2025-05-11T22:17:40.859Z - Server running on port 2637
+2025-05-11T22:17:40.920Z - Database connected
+2025-05-11T22:17:50.559Z - Server running on port 2637
+2025-05-11T22:17:50.625Z - Database connected
+2025-05-11T22:19:22.467Z - ERROR: Send friend request error:
+2025-05-11T22:23:07.369Z - ERROR: Send friend request error:
+2025-05-11T22:25:52.647Z - Server running on port 2637
+2025-05-11T22:25:52.709Z - Database connected
+2025-05-11T22:26:39.338Z - ERROR: Accept friend request error:
+2025-05-11T22:36:39.893Z - Server running on port 2637
+2025-05-11T22:36:39.955Z - Database connected
+2025-05-11T22:43:30.226Z - Server running on port 2637
+2025-05-11T22:43:30.292Z - Database connected
+2025-05-11T22:43:55.406Z - ERROR: Send friend request error:
+2025-05-11T22:44:55.194Z - ERROR: Send friend request error:
+2025-05-11T22:44:59.510Z - ERROR: Send friend request error:
+2025-05-11T22:50:19.576Z - ERROR: Send friend request error:
+2025-05-11T22:52:18.052Z - ERROR: Send friend request error:
+2025-05-11T23:00:32.484Z - Server running on port 2637
+2025-05-11T23:00:32.545Z - Database connected
+2025-05-11T23:06:58.556Z - Server running on port 2637
+2025-05-11T23:06:58.617Z - Database connected
+2025-05-11T23:09:11.735Z - Server running on port 2637
+2025-05-11T23:09:11.795Z - Database connected
+2025-05-11T23:12:58.912Z - ERROR: Send message error:
+2025-05-11T23:13:14.697Z - Server running on port 2637
+2025-05-11T23:13:14.759Z - Database connected
+2025-05-11T23:13:18.086Z - ERROR: Send message error:
+2025-05-11T23:15:54.164Z - Server running on port 2637
+2025-05-11T23:15:54.227Z - Database connected
+2025-05-11T23:16:52.676Z - ERROR: Send message error:
+2025-05-11T23:19:56.090Z - Server running on port 2637
+2025-05-11T23:19:56.154Z - Database connected
+2025-05-11T23:20:00.080Z - ERROR: Send message error:
+2025-05-11T23:20:32.661Z - ERROR: Send message error:
+2025-05-11T23:21:01.352Z - ERROR: Send message error:
+2025-05-11T23:21:28.894Z - ERROR: Send message error:
+2025-05-11T23:27:09.003Z - ERROR: Send message error:
+2025-05-11T23:27:46.636Z - ERROR: Get messages error:
+2025-05-11T23:27:52.068Z - ERROR: Get messages error:
+2025-05-11T23:28:16.952Z - ERROR: Get messages error:
+2025-05-12T05:23:17.187Z - ERROR: Send message error:
+2025-05-12T05:26:37.625Z - Server running on port 2637
+2025-05-12T05:26:37.684Z - Database connected
+2025-05-12T05:30:28.244Z - Server running on port 2637
+2025-05-12T05:30:28.307Z - Database connected
+2025-05-12T05:40:36.919Z - Server running on port 2637
+2025-05-12T05:40:36.979Z - Database connected
+2025-05-12T05:41:41.044Z - Server running on port 2637
+2025-05-12T05:41:41.112Z - Database connected
+2025-05-12T05:44:38.668Z - Server running on port 2637
+2025-05-12T05:44:38.725Z - Database connected
+2025-05-12T05:48:58.524Z - Server running on port 2637
+2025-05-12T05:48:58.582Z - Database connected
+2025-05-12T05:49:02.374Z - ERROR: PrismaClientValidationError: 
+Invalid `prisma.conversation.create()` invocation:
+
+{
+  data: {
+    user2Id: NaN,
++   user1Id: Int
+  }
+}
+
+Argument `user1Id` is missing.
+2025-05-12T05:55:09.124Z - Server running on port 2637
+2025-05-12T05:55:09.183Z - Database connected
+2025-05-12T06:00:22.548Z - Server running on port 2637
+2025-05-12T06:00:22.605Z - Database connected
+2025-05-12T06:10:51.992Z - ERROR: PrismaClientValidationError: 
+Invalid `prisma.conversation.findMany()` invocation:
+
+{
+  where: {
+    OR: [
+      {
+        user1Id: 1
+      },
+      {
+        user2Id: 1
+      }
+    ]
+  },
+  include: {
+    user1: {
+    ~~~~~
+      select: {
+        name: true,
+        email: true
+      }
+    },
+    user2: {
+      select: {
+        name: true,
+        email: true
+      }
+    },
+?   messages?: true
+  }
+}
+
+Unknown field `user1` for include statement on model `Conversation`. Available options are marked with ?.
+2025-05-12T06:13:07.022Z - Server running on port 2637
+2025-05-12T06:13:07.083Z - Database connected
+2025-05-12T06:13:28.079Z - ERROR: PrismaClientValidationError: 
+Invalid `prisma.message.findMany()` invocation:
+
+{
+  where: {
++   conversationId: {
++     equals: Int | IntFieldRefInput,
++     in: Int[] | ListIntFieldRefInput,
++     notIn: Int[] | ListIntFieldRefInput,
++     lt: Int | IntFieldRefInput,
++     lte: Int | IntFieldRefInput,
++     gt: Int | IntFieldRefInput,
++     gte: Int | IntFieldRefInput,
++     not: Int | NestedIntFilter
++   }
+  },
+  include: {
+    user: {
+      select: {
+        name: true,
+        email: true
+      }
+    }
+  }
+}
+
+Argument `conversationId` is missing.
+2025-05-12T06:15:05.950Z - Server running on port 2637
+2025-05-12T06:15:06.008Z - Database connected
+2025-05-12T06:15:10.773Z - ERROR: PrismaClientValidationError: 
+Invalid `prisma.message.findMany()` invocation:
+
+{
+  where: {
++   conversationId: {
++     equals: Int | IntFieldRefInput,
++     in: Int[] | ListIntFieldRefInput,
++     notIn: Int[] | ListIntFieldRefInput,
++     lt: Int | IntFieldRefInput,
++     lte: Int | IntFieldRefInput,
++     gt: Int | IntFieldRefInput,
++     gte: Int | IntFieldRefInput,
++     not: Int | NestedIntFilter
++   }
+  },
+  include: {
+    user: {
+      select: {
+        name: true,
+        email: true
+      }
+    }
+  }
+}
+
+Argument `conversationId` is missing.
+2025-05-12T06:16:44.624Z - Server running on port 2637
+2025-05-12T06:16:44.681Z - Database connected
+2025-05-12T06:16:51.207Z - ERROR: PrismaClientValidationError: 
+Invalid `prisma.message.findMany()` invocation:
+
+{
+  where: {
++   conversationId: {
++     equals: Int | IntFieldRefInput,
++     in: Int[] | ListIntFieldRefInput,
++     notIn: Int[] | ListIntFieldRefInput,
++     lt: Int | IntFieldRefInput,
++     lte: Int | IntFieldRefInput,
++     gt: Int | IntFieldRefInput,
++     gte: Int | IntFieldRefInput,
++     not: Int | NestedIntFilter
++   }
+  },
+  include: {
+    user: {
+      select: {
+        name: true,
+        email: true
+      }
+    }
+  }
+}
+
+Argument `conversationId` is missing.
+2025-05-12T06:19:12.317Z - Server running on port 2637
+2025-05-12T06:19:12.377Z - Database connected
+2025-05-12T06:19:16.995Z - ERROR: PrismaClientValidationError: 
+Invalid `prisma.message.findMany()` invocation:
+
+{
+  where: {
++   conversationId: {
++     equals: Int | IntFieldRefInput,
++     in: Int[] | ListIntFieldRefInput,
++     notIn: Int[] | ListIntFieldRefInput,
++     lt: Int | IntFieldRefInput,
++     lte: Int | IntFieldRefInput,
++     gt: Int | IntFieldRefInput,
++     gte: Int | IntFieldRefInput,
++     not: Int | NestedIntFilter
++   }
+  },
+  include: {
+    user: {
+      select: {
+        name: true,
+        email: true
+      }
+    }
+  }
+}
+
+Argument `conversationId` is missing.
+2025-05-12T06:20:11.814Z - ERROR: PrismaClientValidationError: 
+Invalid `prisma.message.findMany()` invocation:
+
+{
+  where: {
++   conversationId: {
++     equals: Int | IntFieldRefInput,
++     in: Int[] | ListIntFieldRefInput,
++     notIn: Int[] | ListIntFieldRefInput,
++     lt: Int | IntFieldRefInput,
++     lte: Int | IntFieldRefInput,
++     gt: Int | IntFieldRefInput,
++     gte: Int | IntFieldRefInput,
++     not: Int | NestedIntFilter
++   }
+  },
+  include: {
+    user: {
+      select: {
+        name: true,
+        email: true
+      }
+    }
+  }
+}
+
+Argument `conversationId` is missing.
+2025-05-12T06:21:02.955Z - ERROR: PrismaClientValidationError: 
+Invalid `prisma.message.findMany()` invocation:
+
+{
+  where: {
++   conversationId: {
++     equals: Int | IntFieldRefInput,
++     in: Int[] | ListIntFieldRefInput,
++     notIn: Int[] | ListIntFieldRefInput,
++     lt: Int | IntFieldRefInput,
++     lte: Int | IntFieldRefInput,
++     gt: Int | IntFieldRefInput,
++     gte: Int | IntFieldRefInput,
++     not: Int | NestedIntFilter
++   }
+  },
+  include: {
+    user: {
+      select: {
+        name: true,
+        email: true
+      }
+    }
+  }
+}
+
+Argument `conversationId` is missing.
+2025-05-12T06:24:45.076Z - ERROR: PrismaClientValidationError: 
+Invalid `prisma.message.findMany()` invocation:
+
+{
+  where: {
++   conversationId: {
++     equals: Int | IntFieldRefInput,
++     in: Int[] | ListIntFieldRefInput,
++     notIn: Int[] | ListIntFieldRefInput,
++     lt: Int | IntFieldRefInput,
++     lte: Int | IntFieldRefInput,
++     gt: Int | IntFieldRefInput,
++     gte: Int | IntFieldRefInput,
++     not: Int | NestedIntFilter
++   }
+  },
+  include: {
+    user: {
+      select: {
+        name: true,
+        email: true
+      }
+    }
+  }
+}
+
+Argument `conversationId` is missing.
+2025-05-12T06:26:58.261Z - ERROR: PrismaClientValidationError: 
+Invalid `prisma.message.findMany()` invocation:
+
+{
+  where: {
++   conversationId: {
++     equals: Int | IntFieldRefInput,
++     in: Int[] | ListIntFieldRefInput,
++     notIn: Int[] | ListIntFieldRefInput,
++     lt: Int | IntFieldRefInput,
++     lte: Int | IntFieldRefInput,
++     gt: Int | IntFieldRefInput,
++     gte: Int | IntFieldRefInput,
++     not: Int | NestedIntFilter
++   }
+  },
+  include: {
+    user: {
+      select: {
+        name: true,
+        email: true
+      }
+    }
+  }
+}
+
+Argument `conversationId` is missing.
+2025-05-12T06:27:09.193Z - Server running on port 2637
+2025-05-12T06:27:09.253Z - Database connected
+2025-05-12T06:27:16.032Z - ERROR: PrismaClientValidationError: 
+Invalid `prisma.message.findMany()` invocation:
+
+{
+  where: {
++   conversationId: {
++     equals: Int | IntFieldRefInput,
++     in: Int[] | ListIntFieldRefInput,
++     notIn: Int[] | ListIntFieldRefInput,
++     lt: Int | IntFieldRefInput,
++     lte: Int | IntFieldRefInput,
++     gt: Int | IntFieldRefInput,
++     gte: Int | IntFieldRefInput,
++     not: Int | NestedIntFilter
++   }
+  },
+  include: {
+    user: {
+      select: {
+        name: true,
+        email: true
+      }
+    }
+  }
+}
+
+Argument `conversationId` is missing.
+2025-05-12T06:31:54.236Z - Server running on port 2637
+2025-05-12T06:31:54.295Z - Database connected
+2025-05-12T06:32:03.932Z - ERROR: PrismaClientValidationError: 
+Invalid `prisma.message.findMany()` invocation:
+
+{
+  where: {
++   conversationId: {
++     equals: Int | IntFieldRefInput,
++     in: Int[] | ListIntFieldRefInput,
++     notIn: Int[] | ListIntFieldRefInput,
++     lt: Int | IntFieldRefInput,
++     lte: Int | IntFieldRefInput,
++     gt: Int | IntFieldRefInput,
++     gte: Int | IntFieldRefInput,
++     not: Int | NestedIntFilter
++   }
+  },
+  include: {
+    user: {
+      select: {
+        name: true,
+        email: true
+      }
+    }
+  }
+}
+
+Argument `conversationId` is missing.
+2025-05-12T06:34:49.691Z - Server running on port 2637
+2025-05-12T06:34:49.748Z - Database connected
+2025-05-12T06:35:00.914Z - ERROR: PrismaClientValidationError: 
+Invalid `prisma.message.findMany()` invocation:
+
+{
+  where: {
++   conversationId: {
++     equals: Int | IntFieldRefInput,
++     in: Int[] | ListIntFieldRefInput,
++     notIn: Int[] | ListIntFieldRefInput,
++     lt: Int | IntFieldRefInput,
++     lte: Int | IntFieldRefInput,
++     gt: Int | IntFieldRefInput,
++     gte: Int | IntFieldRefInput,
++     not: Int | NestedIntFilter
++   }
+  },
+  include: {
+    user: {
+      select: {
+        name: true,
+        email: true
+      }
+    }
+  }
+}
+
+Argument `conversationId` is missing.
+2025-05-12T06:36:35.917Z - Server running on port 2637
+2025-05-12T06:36:35.983Z - Database connected
+2025-05-12T06:36:41.300Z - ERROR: PrismaClientValidationError: 
+Invalid `prisma.message.findMany()` invocation:
+
+{
+  where: {
++   conversationId: {
++     equals: Int | IntFieldRefInput,
++     in: Int[] | ListIntFieldRefInput,
++     notIn: Int[] | ListIntFieldRefInput,
++     lt: Int | IntFieldRefInput,
++     lte: Int | IntFieldRefInput,
++     gt: Int | IntFieldRefInput,
++     gte: Int | IntFieldRefInput,
++     not: Int | NestedIntFilter
++   }
+  },
+  include: {
+    user: {
+      select: {
+        name: true,
+        email: true
+      }
+    }
+  }
+}
+
+Argument `conversationId` is missing.
+2025-05-12T06:48:44.803Z - Server running on port 2637
+2025-05-12T06:48:44.861Z - Database connected
+2025-05-12T06:48:51.982Z - ERROR: PrismaClientValidationError: 
+Invalid `prisma.message.findMany()` invocation:
+
+{
+  where: {
++   conversationId: {
++     equals: Int | IntFieldRefInput,
++     in: Int[] | ListIntFieldRefInput,
++     notIn: Int[] | ListIntFieldRefInput,
++     lt: Int | IntFieldRefInput,
++     lte: Int | IntFieldRefInput,
++     gt: Int | IntFieldRefInput,
++     gte: Int | IntFieldRefInput,
++     not: Int | NestedIntFilter
++   }
+  },
+  include: {
+    user: {
+      select: {
+        name: true,
+        email: true
+      }
+    }
+  }
+}
+
+Argument `conversationId` is missing.
+2025-05-12T06:50:41.289Z - Server running on port 2637
+2025-05-12T06:50:41.346Z - Database connected
+2025-05-12T06:50:45.370Z - ERROR: PrismaClientValidationError: 
+Invalid `prisma.message.findMany()` invocation:
+
+{
+  where: {
++   conversationId: {
++     equals: Int | IntFieldRefInput,
++     in: Int[] | ListIntFieldRefInput,
++     notIn: Int[] | ListIntFieldRefInput,
++     lt: Int | IntFieldRefInput,
++     lte: Int | IntFieldRefInput,
++     gt: Int | IntFieldRefInput,
++     gte: Int | IntFieldRefInput,
++     not: Int | NestedIntFilter
++   }
+  },
+  include: {
+    user: {
+      select: {
+        name: true,
+        email: true
+      }
+    }
+  }
+}
+
+Argument `conversationId` is missing.
+2025-05-12T06:52:43.711Z - Server running on port 2637
+2025-05-12T06:52:43.770Z - Database connected
+2025-05-12T06:52:47.303Z - ERROR: PrismaClientValidationError: 
+Invalid `prisma.message.findMany()` invocation:
+
+{
+  where: {
++   conversationId: {
++     equals: Int | IntFieldRefInput,
++     in: Int[] | ListIntFieldRefInput,
++     notIn: Int[] | ListIntFieldRefInput,
++     lt: Int | IntFieldRefInput,
++     lte: Int | IntFieldRefInput,
++     gt: Int | IntFieldRefInput,
++     gte: Int | IntFieldRefInput,
++     not: Int | NestedIntFilter
++   }
+  },
+  include: {
+    user: {
+      select: {
+        name: true,
+        email: true
+      }
+    }
+  }
+}
+
+Argument `conversationId` is missing.
+2025-05-12T06:52:56.210Z - Server running on port 2637
+2025-05-12T06:52:56.268Z - Database connected
+2025-05-12T06:52:59.713Z - ERROR: PrismaClientValidationError: 
+Invalid `prisma.message.findMany()` invocation:
+
+{
+  where: {
++   conversationId: {
++     equals: Int | IntFieldRefInput,
++     in: Int[] | ListIntFieldRefInput,
++     notIn: Int[] | ListIntFieldRefInput,
++     lt: Int | IntFieldRefInput,
++     lte: Int | IntFieldRefInput,
++     gt: Int | IntFieldRefInput,
++     gte: Int | IntFieldRefInput,
++     not: Int | NestedIntFilter
++   }
+  },
+  include: {
+    user: {
+      select: {
+        name: true,
+        email: true
+      }
+    }
+  }
+}
+
+Argument `conversationId` is missing.
+2025-05-12T06:53:22.862Z - Server running on port 2637
+2025-05-12T06:53:22.921Z - Database connected
+2025-05-12T06:53:25.745Z - ERROR: PrismaClientValidationError: 
+Invalid `prisma.message.findMany()` invocation:
+
+{
+  where: {
++   conversationId: {
++     equals: Int | IntFieldRefInput,
++     in: Int[] | ListIntFieldRefInput,
++     notIn: Int[] | ListIntFieldRefInput,
++     lt: Int | IntFieldRefInput,
++     lte: Int | IntFieldRefInput,
++     gt: Int | IntFieldRefInput,
++     gte: Int | IntFieldRefInput,
++     not: Int | NestedIntFilter
++   }
+  },
+  include: {
+    user: {
+      select: {
+        name: true,
+        email: true
+      }
+    }
+  }
+}
+
+Argument `conversationId` is missing.
+2025-05-12T06:54:46.047Z - Server running on port 2637
+2025-05-12T06:54:46.109Z - Database connected
+2025-05-12T06:56:50.220Z - conversationId:
+2025-05-12T06:56:50.223Z - ERROR: PrismaClientValidationError: 
+Invalid `prisma.message.findMany()` invocation:
+
+{
+  where: {
++   conversationId: {
++     equals: Int | IntFieldRefInput,
++     in: Int[] | ListIntFieldRefInput,
++     notIn: Int[] | ListIntFieldRefInput,
++     lt: Int | IntFieldRefInput,
++     lte: Int | IntFieldRefInput,
++     gt: Int | IntFieldRefInput,
++     gte: Int | IntFieldRefInput,
++     not: Int | NestedIntFilter
++   }
+  },
+  include: {
+    user: {
+      select: {
+        name: true,
+        email: true
+      }
+    }
+  }
+}
+
+Argument `conversationId` is missing.
+2025-05-12T07:09:20.737Z - Server running on port 2637
+2025-05-12T07:09:20.795Z - Database connected
+2025-05-12T07:12:49.785Z - Server running on port 2637
+2025-05-12T07:12:49.844Z - Database connected
+2025-05-12T07:33:05.906Z - Server running on port 2637
+2025-05-12T07:33:05.971Z - Database connected
+2025-05-12T07:39:55.280Z - Server running on port 2637
+2025-05-12T07:39:55.339Z - Database connected
+2025-05-12T07:44:04.187Z - Server running on port 2637
+2025-05-12T07:44:04.250Z - Database connected
+2025-05-12T07:44:19.993Z - ERROR: Error fetching conversations:
+2025-05-12T07:44:37.042Z - ERROR: Error fetching conversations:
+2025-05-12T07:51:44.586Z - Server running on port 2637
+2025-05-12T07:51:44.738Z - Database connected
+2025-05-12T07:51:54.871Z - User ID:
+2025-05-12T07:51:54.939Z - ERROR: Error fetching conversations:
+2025-05-12T07:52:08.662Z - Server running on port 2637
+2025-05-12T07:52:08.719Z - Database connected
+2025-05-12T07:52:19.547Z - User ID:
+2025-05-12T07:52:19.616Z - ERROR: Error fetching conversations:
+2025-05-12T07:53:49.090Z - Server running on port 2637
+2025-05-12T07:53:49.147Z - Database connected
+2025-05-12T07:53:51.980Z - Authorization Token:
+2025-05-12T07:53:51.982Z - Decoded Token:
+2025-05-12T07:53:51.982Z - User ID:
+2025-05-12T07:53:52.050Z - ERROR: Error fetching conversations:
+2025-05-12T07:57:19.644Z - Authorization Token:
+2025-05-12T07:57:19.645Z - Decoded Token:
+2025-05-12T07:57:19.645Z - User ID:
+2025-05-12T07:57:19.647Z - ERROR: Error fetching conversations:
+2025-05-12T07:57:25.521Z - Server running on port 2637
+2025-05-12T07:57:25.578Z - Database connected
+2025-05-12T07:57:48.344Z - Authorization Header:
+2025-05-12T07:57:48.344Z - Authorization Token:
+2025-05-12T07:57:48.344Z - JWT Secret:
+2025-05-12T07:57:48.346Z - Decoded Token:
+2025-05-12T07:57:48.346Z - User ID:
+2025-05-12T07:57:48.349Z - ERROR: Error fetching conversations:
+2025-05-12T07:59:49.228Z - Server running on port 2637
+2025-05-12T07:59:49.283Z - Database connected
+2025-05-12T07:59:57.304Z - Authorization Header:
+2025-05-12T07:59:57.304Z - Authorization Token:
+2025-05-12T07:59:57.304Z - JWT Secret:
+2025-05-12T07:59:57.306Z - Decoded Token:
+2025-05-12T07:59:57.306Z - User ID:
+2025-05-12T07:59:57.383Z - ERROR: Error fetching conversations:
+2025-05-12T08:04:59.860Z - Server running on port 2637
+2025-05-12T08:04:59.918Z - Database connected
+2025-05-12T08:05:04.845Z - Authorization Header:
+2025-05-12T08:05:04.846Z - Authorization Token:
+2025-05-12T08:05:04.846Z - JWT Secret:
+2025-05-12T08:05:04.847Z - Decoded Token:
+2025-05-12T08:05:04.848Z - User ID:
+2025-05-12T08:05:04.917Z - ERROR: Error fetching conversations:
+2025-05-12T08:15:19.768Z - Server running on port 2637
+2025-05-12T08:15:19.831Z - Database connected
+2025-05-12T08:15:24.280Z - Authorization Header:
+2025-05-12T08:15:24.280Z - Authorization Token:
+2025-05-12T08:15:24.280Z - JWT Secret:
+2025-05-12T08:15:24.282Z - Decoded Token:
+2025-05-12T08:15:24.282Z - User ID:
+2025-05-12T08:15:24.351Z - ERROR: Error fetching conversations:
+2025-05-12T08:47:53.667Z - Server running on port 2637
+2025-05-12T08:47:53.731Z - Database connected
+2025-05-13T16:37:44.139Z - Server running on port 2637
+2025-05-13T16:37:44.212Z - Database connected
+2025-05-13T16:37:50.929Z - ERROR: Error sending email:
+2025-05-13T16:38:31.309Z - Server running on port 2637
+2025-05-13T16:38:31.367Z - Database connected
+2025-05-13T16:38:47.489Z - ERROR: Error sending email:
+2025-05-13T16:40:33.390Z - Server running on port 2637
+2025-05-13T16:40:33.449Z - Database connected
+2025-05-13T16:40:50.255Z - ERROR: Error sending email:
+2025-05-13T16:42:30.197Z - Server running on port 2637
+2025-05-13T16:42:30.257Z - Database connected
+2025-05-13T16:43:07.978Z - ERROR: Error sending email:
+2025-05-13T16:45:21.299Z - Server running on port 2637
+2025-05-13T16:45:21.358Z - Database connected
+2025-05-13T16:46:10.806Z - ERROR: Error sending email:
+2025-05-13T16:47:15.454Z - ERROR: Error sending email:
+2025-05-13T16:52:12.044Z - Server running on port 2637
+2025-05-13T16:52:12.105Z - Database connected
+2025-05-13T17:11:23.052Z - Server running on port 2637
+2025-05-13T17:11:23.112Z - Database connected
+2025-05-13T17:11:59.310Z - Server running on port 2637
+2025-05-13T17:11:59.369Z - Database connected
+2025-05-13T17:13:17.453Z - Server running on port 2637
+2025-05-13T17:13:17.514Z - Database connected
+2025-05-13T17:14:47.345Z - Server running on port 2637
+2025-05-13T17:14:47.405Z - Database connected
+2025-05-13T17:14:49.952Z - Sending email to sharifdarjenkyleabdulhamid@gmail.com from sharifdarjenkyleabdulhamid@gmail.com:
+        Name: John Doe
+        Message: Hello, this is a test message.
+2025-05-13T17:15:21.579Z - Sending email to sharifdarjenkyleabdulhamid@gmail.com from warwar.tae@gmail.com:
+        Name: John Doe
+        Message: Hello, this is a test message.
+2025-05-13T17:15:37.063Z - Sending email to sharifdarjenkyleabdulhamid@gmail.com from warwar.tae@gmail.com:
+        Name: John Doe
+        Message: Hello, this is a test message.
+2025-05-13T17:16:07.309Z - Sending email to sharifdarjenkyleabdulhamid@gmail.com from sharifdarjenkyle.abdulhamid_2021-0315@mdci.edu.ph:
+        Name: John Doe
+        Message: Hello, this is a test message.
+2025-05-13T17:16:41.165Z - Sending email to sharifdarjenkyleabdulhamid@gmail.com from sharifdarjenkyle.abdulhamid_2021-0315@mdci.edu.ph:
+        Name: John Doe
+        Message: Hello, this is a test message.
+2025-05-13T17:19:45.812Z - Server running on port 2637
+2025-05-13T17:19:45.872Z - Database connected
+2025-05-13T17:22:10.751Z - Server running on port 2637
+2025-05-13T17:22:10.809Z - Database connected
+2025-05-13T17:24:50.535Z - ERROR: Error: Not allowed by CORS
+    at origin (/root/api/server.js:69:8)
+    at /root/api/node_modules/cors/lib/index.js:219:13
+    at optionsCallback (/root/api/node_modules/cors/lib/index.js:199:9)
+    at corsMiddleware (/root/api/node_modules/cors/lib/index.js:204:7)
+    at Layer.handle [as handle_request] (/root/api/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/root/api/node_modules/express/lib/router/index.js:328:13)
+    at /root/api/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/root/api/node_modules/express/lib/router/index.js:346:12)
+    at next (/root/api/node_modules/express/lib/router/index.js:280:10)
+    at expressInit (/root/api/node_modules/express/lib/middleware/init.js:40:5)
+2025-05-13T17:26:51.429Z - Server running on port 2637
+2025-05-13T17:26:51.489Z - Database connected
+2025-05-13T18:32:51.039Z - ERROR: MulterError: Unexpected field
+    at wrappedFileFilter (/root/api/node_modules/multer/index.js:40:19)
+    at Multipart.<anonymous> (/root/api/node_modules/multer/lib/make-middleware.js:109:7)
+    at Multipart.emit (node:events:524:28)
+    at HeaderParser.cb (/root/api/node_modules/busboy/lib/types/multipart.js:358:14)
+    at HeaderParser.push (/root/api/node_modules/busboy/lib/types/multipart.js:162:20)
+    at SBMH.ssCb [as _cb] (/root/api/node_modules/busboy/lib/types/multipart.js:394:37)
+    at feed (/root/api/node_modules/streamsearch/lib/sbmh.js:200:10)
+    at SBMH.push (/root/api/node_modules/streamsearch/lib/sbmh.js:104:16)
+    at Multipart._write (/root/api/node_modules/busboy/lib/types/multipart.js:567:19)
+    at writeOrBuffer (node:internal/streams/writable:572:12)
+2025-05-13T18:34:11.511Z - ERROR: MulterError: Unexpected field
+    at wrappedFileFilter (/root/api/node_modules/multer/index.js:40:19)
+    at Multipart.<anonymous> (/root/api/node_modules/multer/lib/make-middleware.js:109:7)
+    at Multipart.emit (node:events:524:28)
+    at HeaderParser.cb (/root/api/node_modules/busboy/lib/types/multipart.js:358:14)
+    at HeaderParser.push (/root/api/node_modules/busboy/lib/types/multipart.js:162:20)
+    at SBMH.ssCb [as _cb] (/root/api/node_modules/busboy/lib/types/multipart.js:394:37)
+    at feed (/root/api/node_modules/streamsearch/lib/sbmh.js:200:10)
+    at SBMH.push (/root/api/node_modules/streamsearch/lib/sbmh.js:104:16)
+    at Multipart._write (/root/api/node_modules/busboy/lib/types/multipart.js:567:19)
+    at writeOrBuffer (node:internal/streams/writable:572:12)
+2025-05-13T18:34:27.276Z - ERROR: MulterError: Unexpected field
+    at wrappedFileFilter (/root/api/node_modules/multer/index.js:40:19)
+    at Multipart.<anonymous> (/root/api/node_modules/multer/lib/make-middleware.js:109:7)
+    at Multipart.emit (node:events:524:28)
+    at HeaderParser.cb (/root/api/node_modules/busboy/lib/types/multipart.js:358:14)
+    at HeaderParser.push (/root/api/node_modules/busboy/lib/types/multipart.js:162:20)
+    at SBMH.ssCb [as _cb] (/root/api/node_modules/busboy/lib/types/multipart.js:394:37)
+    at feed (/root/api/node_modules/streamsearch/lib/sbmh.js:200:10)
+    at SBMH.push (/root/api/node_modules/streamsearch/lib/sbmh.js:104:16)
+    at Multipart._write (/root/api/node_modules/busboy/lib/types/multipart.js:567:19)
+    at writeOrBuffer (node:internal/streams/writable:572:12)
+2025-05-13T18:35:17.128Z - ERROR: MulterError: Unexpected field
+    at wrappedFileFilter (/root/api/node_modules/multer/index.js:40:19)
+    at Multipart.<anonymous> (/root/api/node_modules/multer/lib/make-middleware.js:109:7)
+    at Multipart.emit (node:events:524:28)
+    at HeaderParser.cb (/root/api/node_modules/busboy/lib/types/multipart.js:358:14)
+    at HeaderParser.push (/root/api/node_modules/busboy/lib/types/multipart.js:162:20)
+    at SBMH.ssCb [as _cb] (/root/api/node_modules/busboy/lib/types/multipart.js:394:37)
+    at feed (/root/api/node_modules/streamsearch/lib/sbmh.js:200:10)
+    at SBMH.push (/root/api/node_modules/streamsearch/lib/sbmh.js:104:16)
+    at Multipart._write (/root/api/node_modules/busboy/lib/types/multipart.js:567:19)
+    at writeOrBuffer (node:internal/streams/writable:572:12)
+2025-05-13T18:35:36.009Z - ERROR: MulterError: Unexpected field
+    at wrappedFileFilter (/root/api/node_modules/multer/index.js:40:19)
+    at Multipart.<anonymous> (/root/api/node_modules/multer/lib/make-middleware.js:109:7)
+    at Multipart.emit (node:events:524:28)
+    at HeaderParser.cb (/root/api/node_modules/busboy/lib/types/multipart.js:358:14)
+    at HeaderParser.push (/root/api/node_modules/busboy/lib/types/multipart.js:162:20)
+    at SBMH.ssCb [as _cb] (/root/api/node_modules/busboy/lib/types/multipart.js:394:37)
+    at feed (/root/api/node_modules/streamsearch/lib/sbmh.js:200:10)
+    at SBMH.push (/root/api/node_modules/streamsearch/lib/sbmh.js:104:16)
+    at Multipart._write (/root/api/node_modules/busboy/lib/types/multipart.js:567:19)
+    at writeOrBuffer (node:internal/streams/writable:572:12)
+2025-05-13T18:36:19.110Z - ERROR: MulterError: Unexpected field
+    at wrappedFileFilter (/root/api/node_modules/multer/index.js:40:19)
+    at Multipart.<anonymous> (/root/api/node_modules/multer/lib/make-middleware.js:109:7)
+    at Multipart.emit (node:events:524:28)
+    at HeaderParser.cb (/root/api/node_modules/busboy/lib/types/multipart.js:358:14)
+    at HeaderParser.push (/root/api/node_modules/busboy/lib/types/multipart.js:162:20)
+    at SBMH.ssCb [as _cb] (/root/api/node_modules/busboy/lib/types/multipart.js:394:37)
+    at feed (/root/api/node_modules/streamsearch/lib/sbmh.js:200:10)
+    at SBMH.push (/root/api/node_modules/streamsearch/lib/sbmh.js:104:16)
+    at Multipart._write (/root/api/node_modules/busboy/lib/types/multipart.js:567:19)
+    at writeOrBuffer (node:internal/streams/writable:572:12)
+2025-05-13T18:40:28.797Z - Server running on port 2637
+2025-05-13T18:40:28.858Z - Database connected
+2025-05-13T18:41:26.431Z - ERROR: MulterError: Unexpected field
+    at wrappedFileFilter (/root/api/node_modules/multer/index.js:40:19)
+    at Multipart.<anonymous> (/root/api/node_modules/multer/lib/make-middleware.js:109:7)
+    at Multipart.emit (node:events:524:28)
+    at HeaderParser.cb (/root/api/node_modules/busboy/lib/types/multipart.js:358:14)
+    at HeaderParser.push (/root/api/node_modules/busboy/lib/types/multipart.js:162:20)
+    at SBMH.ssCb [as _cb] (/root/api/node_modules/busboy/lib/types/multipart.js:394:37)
+    at feed (/root/api/node_modules/streamsearch/lib/sbmh.js:200:10)
+    at SBMH.push (/root/api/node_modules/streamsearch/lib/sbmh.js:104:16)
+    at Multipart._write (/root/api/node_modules/busboy/lib/types/multipart.js:567:19)
+    at writeOrBuffer (node:internal/streams/writable:572:12)
+2025-05-13T18:41:51.139Z - ERROR: MulterError: Unexpected field
+    at wrappedFileFilter (/root/api/node_modules/multer/index.js:40:19)
+    at Multipart.<anonymous> (/root/api/node_modules/multer/lib/make-middleware.js:109:7)
+    at Multipart.emit (node:events:524:28)
+    at HeaderParser.cb (/root/api/node_modules/busboy/lib/types/multipart.js:358:14)
+    at HeaderParser.push (/root/api/node_modules/busboy/lib/types/multipart.js:162:20)
+    at SBMH.ssCb [as _cb] (/root/api/node_modules/busboy/lib/types/multipart.js:394:37)
+    at feed (/root/api/node_modules/streamsearch/lib/sbmh.js:200:10)
+    at SBMH.push (/root/api/node_modules/streamsearch/lib/sbmh.js:104:16)
+    at Multipart._write (/root/api/node_modules/busboy/lib/types/multipart.js:567:19)
+    at writeOrBuffer (node:internal/streams/writable:572:12)
+2025-05-13T18:42:43.588Z - ERROR: MulterError: Unexpected field
+    at wrappedFileFilter (/root/api/node_modules/multer/index.js:40:19)
+    at Multipart.<anonymous> (/root/api/node_modules/multer/lib/make-middleware.js:109:7)
+    at Multipart.emit (node:events:524:28)
+    at HeaderParser.cb (/root/api/node_modules/busboy/lib/types/multipart.js:358:14)
+    at HeaderParser.push (/root/api/node_modules/busboy/lib/types/multipart.js:162:20)
+    at SBMH.ssCb [as _cb] (/root/api/node_modules/busboy/lib/types/multipart.js:394:37)
+    at feed (/root/api/node_modules/streamsearch/lib/sbmh.js:200:10)
+    at SBMH.push (/root/api/node_modules/streamsearch/lib/sbmh.js:104:16)
+    at Multipart._write (/root/api/node_modules/busboy/lib/types/multipart.js:567:19)
+    at writeOrBuffer (node:internal/streams/writable:572:12)
+2025-05-13T18:43:07.160Z - ERROR: MulterError: Unexpected field
+    at wrappedFileFilter (/root/api/node_modules/multer/index.js:40:19)
+    at Multipart.<anonymous> (/root/api/node_modules/multer/lib/make-middleware.js:109:7)
+    at Multipart.emit (node:events:524:28)
+    at HeaderParser.cb (/root/api/node_modules/busboy/lib/types/multipart.js:358:14)
+    at HeaderParser.push (/root/api/node_modules/busboy/lib/types/multipart.js:162:20)
+    at SBMH.ssCb [as _cb] (/root/api/node_modules/busboy/lib/types/multipart.js:394:37)
+    at feed (/root/api/node_modules/streamsearch/lib/sbmh.js:200:10)
+    at SBMH.push (/root/api/node_modules/streamsearch/lib/sbmh.js:104:16)
+    at Multipart._write (/root/api/node_modules/busboy/lib/types/multipart.js:567:19)
+    at writeOrBuffer (node:internal/streams/writable:572:12)
+2025-05-13T18:44:05.567Z - ERROR: MulterError: Unexpected field
+    at wrappedFileFilter (/root/api/node_modules/multer/index.js:40:19)
+    at Multipart.<anonymous> (/root/api/node_modules/multer/lib/make-middleware.js:109:7)
+    at Multipart.emit (node:events:524:28)
+    at HeaderParser.cb (/root/api/node_modules/busboy/lib/types/multipart.js:358:14)
+    at HeaderParser.push (/root/api/node_modules/busboy/lib/types/multipart.js:162:20)
+    at SBMH.ssCb [as _cb] (/root/api/node_modules/busboy/lib/types/multipart.js:394:37)
+    at feed (/root/api/node_modules/streamsearch/lib/sbmh.js:200:10)
+    at SBMH.push (/root/api/node_modules/streamsearch/lib/sbmh.js:104:16)
+    at Multipart._write (/root/api/node_modules/busboy/lib/types/multipart.js:567:19)
+    at writeOrBuffer (node:internal/streams/writable:572:12)
+2025-05-13T18:49:56.688Z - Server running on port 2637
+2025-05-13T18:49:56.747Z - Database connected
+2025-05-13T18:53:28.528Z - Server running on port 2637
+2025-05-13T18:53:28.595Z - Database connected
+2025-05-13T18:54:24.197Z - Server running on port 2637
+2025-05-13T18:54:24.259Z - Database connected
+2025-05-13T19:35:29.135Z - Server running on port 2637
+2025-05-13T19:35:29.196Z - Database connected
+2025-05-13T19:35:49.496Z - Server running on port 2637
+2025-05-13T19:35:49.555Z - Database connected
+2025-05-13T22:41:32.456Z - Server running on port 2637
+2025-05-13T22:41:32.773Z - Database connected
+2025-05-14T13:46:51.837Z - Server running on port 2637
+2025-05-14T13:46:51.896Z - Database connected
+2025-05-14T13:48:57.936Z - Server running on port 2637
+2025-05-14T13:48:57.995Z - Database connected
+2025-05-14T13:49:23.623Z - Server running on port 2637
+2025-05-14T13:49:23.680Z - Database connected
+2025-05-14T13:53:53.189Z - Server running on port 2637
+2025-05-14T13:53:53.247Z - Database connected
+2025-05-14T13:56:14.404Z - Server running on port 2637
+2025-05-14T13:56:14.462Z - Database connected
+2025-05-14T14:08:21.158Z - Server running on port 2637
+2025-05-14T14:08:21.216Z - Database connected
+2025-05-14T14:11:52.495Z - Server running on port 2637
+2025-05-14T14:11:52.554Z - Database connected
+2025-05-14T14:13:29.284Z - Server running on port 2637
+2025-05-14T14:13:29.343Z - Database connected
+2025-05-14T14:14:16.824Z - Server running on port 2637
+2025-05-14T14:14:16.883Z - Database connected
+2025-05-14T14:15:17.798Z - Server running on port 2637
+2025-05-14T14:15:17.857Z - Database connected
+2025-05-14T14:15:21.670Z - Maintenance mode set to: false
+2025-05-14T14:15:26.234Z - Maintenance mode set to: true
+2025-05-14T14:17:00.062Z - Server running on port 2637
+2025-05-14T14:17:00.123Z - Database connected
+2025-05-14T14:17:03.056Z - Maintenance mode set to: false
+2025-05-14T14:17:08.704Z - Maintenance mode set to: true
+2025-05-14T14:17:13.780Z - Maintenance mode set to: false
+2025-05-14T14:24:19.230Z - Server running on port 2637
+2025-05-14T14:24:19.290Z - Database connected
+2025-05-14T14:25:26.924Z - Server running on port 2637
+2025-05-14T14:25:26.982Z - Database connected
+2025-05-14T14:35:29.105Z - Server running on port 2637
+2025-05-14T14:35:29.163Z - Database connected
+2025-05-14T14:35:35.181Z - ERROR: Error retrieving inventory:
+2025-05-14T14:35:51.927Z - ERROR: Error retrieving inventory:
+2025-05-14T14:36:06.681Z - ERROR: Error retrieving inventory:
+2025-05-14T14:37:24.310Z - ERROR: Error retrieving inventory:
+2025-05-14T14:39:03.639Z - Server running on port 2637
+2025-05-14T14:39:03.697Z - Database connected
+2025-05-14T14:41:17.066Z - Server running on port 2637
+2025-05-14T14:41:17.125Z - Database connected
+2025-05-14T14:41:50.451Z - Server running on port 2637
+2025-05-14T14:41:50.508Z - Database connected
+2025-05-14T14:47:19.147Z - Server running on port 2637
+2025-05-14T14:47:19.205Z - Database connected
+2025-05-14T14:50:02.849Z - Server running on port 2637
+2025-05-14T14:50:02.907Z - Database connected
+2025-05-14T14:52:13.875Z - Server running on port 2637
+2025-05-14T14:52:13.934Z - Database connected
+2025-05-14T14:53:57.533Z - Server running on port 2637
+2025-05-14T14:53:57.590Z - Database connected
+2025-05-14T14:54:17.805Z - Server running on port 2637
+2025-05-14T14:54:17.864Z - Database connected
+2025-05-14T14:57:19.554Z - Server running on port 2637
+2025-05-14T14:57:19.613Z - Database connected
+2025-05-14T14:57:36.407Z - Server running on port 2637
+2025-05-14T14:57:36.466Z - Database connected
+2025-05-14T15:02:56.338Z - Server running on port 2637
+2025-05-14T15:02:56.396Z - Database connected
+2025-05-14T15:04:15.373Z - Request body:
+2025-05-14T15:04:15.373Z - ERROR: Error adding inventory:
+2025-05-14T15:08:05.044Z - Server running on port 2637
+2025-05-14T15:08:05.103Z - Database connected
+2025-05-14T15:08:10.005Z - Request body:
+2025-05-14T15:08:10.005Z - ERROR: Error adding inventory:
+2025-05-14T15:09:25.212Z - Server running on port 2637
+2025-05-14T15:09:25.269Z - Database connected
+2025-05-14T15:09:48.035Z - Request body:
+2025-05-14T15:09:48.035Z - ERROR: Error adding inventory:
+2025-05-14T15:11:35.077Z - Server running on port 2637
+2025-05-14T15:11:35.137Z - Database connected
+2025-05-14T15:11:41.911Z - Request body:
+2025-05-14T15:11:41.911Z - ERROR: Error adding inventory:
+2025-05-14T15:21:55.391Z - Server running on port 2637
+2025-05-14T15:21:55.449Z - Database connected
+2025-05-14T15:22:01.266Z - Request body:
+2025-05-14T15:22:01.266Z - ERROR: Error adding inventory:
+2025-05-14T15:25:09.142Z - Server running on port 2637
+2025-05-14T15:25:09.202Z - Database connected
+2025-05-14T15:25:14.281Z - Request body:
+2025-05-14T15:36:30.944Z - Server running on port 2637
+2025-05-14T15:36:31.003Z - Database connected
+2025-05-14T15:37:59.501Z - Middleware executed for:
+2025-05-14T15:44:25.380Z - Server running on port 2637
+2025-05-14T15:44:25.439Z - Database connected
+2025-05-14T15:58:11.912Z - Middleware executed for:
+2025-05-14T16:01:12.601Z - Server running on port 2637
+2025-05-14T16:01:12.659Z - Database connected
+2025-05-14T16:01:15.944Z - Middleware executed for:
+2025-05-14T16:03:39.518Z - Server running on port 2637
+2025-05-14T16:03:39.576Z - Database connected
+2025-05-14T16:03:43.864Z - Middleware executed for:
+2025-05-14T16:03:48.297Z - Middleware executed for:
+2025-05-14T16:03:54.624Z - Server running on port 2637
+2025-05-14T16:03:54.683Z - Database connected
+2025-05-14T16:03:59.486Z - Middleware executed for:
+2025-05-14T16:06:45.244Z - Server running on port 2637
+2025-05-14T16:06:45.303Z - Database connected
+2025-05-14T16:06:49.169Z - Middleware executed for:
+2025-05-14T16:09:44.929Z - Middleware executed for:
+2025-05-14T16:17:18.720Z - Server running on port 2637
+2025-05-14T16:17:18.780Z - Database connected
+2025-05-14T16:17:51.750Z - Middleware executed for:
+2025-05-14T16:19:37.359Z - Server running on port 2637
+2025-05-14T16:19:37.418Z - Database connected
+2025-05-14T16:28:36.602Z - Middleware executed for:
+2025-05-14T17:07:26.580Z - Server running on port 2637
+2025-05-14T17:07:26.648Z - Database connected
+2025-05-14T17:07:32.666Z - Middleware executed for:
+2025-05-14T17:07:42.124Z - ERROR: ForbiddenError: invalid csrf token
+    at csrf (/root/api/node_modules/csurf/index.js:112:19)
+    at Layer.handle [as handle_request] (/root/api/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/root/api/node_modules/express/lib/router/index.js:328:13)
+    at /root/api/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/root/api/node_modules/express/lib/router/index.js:346:12)
+    at next (/root/api/node_modules/express/lib/router/index.js:280:10)
+    at cookieParser (/root/api/node_modules/cookie-parser/index.js:71:5)
+    at Layer.handle [as handle_request] (/root/api/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/root/api/node_modules/express/lib/router/index.js:328:13)
+    at /root/api/node_modules/express/lib/router/index.js:286:9
+2025-05-14T17:08:09.927Z - Server running on port 2637
+2025-05-14T17:08:09.993Z - Database connected
+2025-05-14T17:08:15.348Z - ERROR: ForbiddenError: invalid csrf token
+    at csrf (/root/api/node_modules/csurf/index.js:112:19)
+    at Layer.handle [as handle_request] (/root/api/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/root/api/node_modules/express/lib/router/index.js:328:13)
+    at /root/api/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/root/api/node_modules/express/lib/router/index.js:346:12)
+    at next (/root/api/node_modules/express/lib/router/index.js:280:10)
+    at cookieParser (/root/api/node_modules/cookie-parser/index.js:71:5)
+    at Layer.handle [as handle_request] (/root/api/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/root/api/node_modules/express/lib/router/index.js:328:13)
+    at /root/api/node_modules/express/lib/router/index.js:286:9
+2025-05-14T17:09:36.380Z - Server running on port 2637
+2025-05-14T17:09:36.446Z - Database connected
+2025-05-14T17:11:32.311Z - Middleware executed for:
+2025-05-14T17:11:35.346Z - ERROR: Error retrieving image metadata:
+2025-05-14T17:11:42.056Z - Server running on port 2637
+2025-05-14T17:11:42.122Z - Database connected
+2025-05-14T17:12:03.220Z - ERROR: Error retrieving image metadata:
+2025-05-14T17:12:27.093Z - ERROR: Error retrieving image metadata:
+2025-05-14T17:14:07.217Z - ERROR: Error caching image metadata:
+2025-05-14T17:14:18.578Z - Server running on port 2637
+2025-05-14T17:14:18.646Z - Database connected
+2025-05-14T17:14:21.425Z - ERROR: Error caching image metadata:
+2025-05-14T17:14:59.134Z - ERROR: Error caching image metadata:
+2025-05-14T17:15:27.965Z - ERROR: Error caching image metadata:
+2025-05-14T17:15:38.302Z - Server running on port 2637
+2025-05-14T17:15:38.369Z - Database connected
+2025-05-14T17:15:40.797Z - ERROR: Error caching image metadata:
+2025-05-14T17:19:50.291Z - Server running on port 2637
+2025-05-14T17:19:50.359Z - Database connected
+2025-05-14T17:19:55.148Z - ERROR: Error caching image metadata:
+2025-05-14T17:20:02.582Z - ERROR: Error caching image metadata:
+2025-05-14T17:22:19.518Z - ERROR: Error caching image metadata:
+2025-05-14T17:26:39.789Z - Server running on port 2637
+2025-05-14T17:26:39.859Z - Database connected
+2025-05-14T17:29:06.501Z - ERROR: Error caching image metadata:
+2025-05-14T17:33:58.497Z - Server running on port 2637
+2025-05-14T17:33:58.564Z - Database connected
+2025-05-14T17:34:04.386Z - ERROR: Error caching image metadata:
+2025-05-14T17:35:21.380Z - Server running on port 2637
+2025-05-14T17:35:21.446Z - Database connected

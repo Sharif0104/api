@@ -1,0 +1,80 @@
+.
+├── api.code-workspace
+├── app.log
+├── file.txt
+├── generated
+│   └── prisma
+├── package.json
+├── prisma
+│   ├── migrations
+├── server.js
+├── src
+│   ├── config
+│   │   ├── db.js
+│   │   ├── helmetConfig.js
+│   │   └── passport.js
+│   ├── controllers
+│   │   ├── UploadController.js
+│   │   ├── adminController.js
+│   │   ├── apiController.js
+│   │   ├── appointmentController.js
+│   │   ├── authController.js
+│   │   ├── availabilityController.js
+│   │   ├── messageController.js
+│   │   ├── minecraftController.js
+│   │   ├── notificationController.js
+│   │   ├── orderController.js
+│   │   ├── paymentController.js
+│   │   ├── productController.js
+│   │   ├── shopController.js
+│   │   ├── speedTestController.js
+│   │   ├── testController.js
+│   │   ├── timeSlotController.js
+│   │   ├── trash
+│   │   │   ├── authController copy.js.txt
+│   │   │   └── shopController copy.js.txt
+│   │   └── userController.js
+│   ├── middleware
+│   │   ├── apiKeyMiddleware.js
+│   │   ├── auth.js
+│   │   ├── rateLimiter.js
+│   │   ├── security.js
+│   │   └── validationMiddleware.js
+│   ├── models
+│   │   ├── Product.js
+│   │   └── User.js
+│   ├── routes
+│   │   ├── UploadRoutes.js
+│   │   ├── adminRoutes.js
+│   │   ├── apiRoutes.js
+│   │   ├── appointmentRoutes.js
+│   │   ├── authRoutes.js
+│   │   ├── availabilityRoutes.js
+│   │   ├── messageRoutes.js
+│   │   ├── minecraftRoutes.js
+│   │   ├── notificationsRoutes.js
+│   │   ├── orderRoutes.js
+│   │   ├── paymentRoutes.js
+│   │   ├── productRoutes.js
+│   │   ├── shopRoutes.js
+│   │   ├── speedTestRouter.js
+│   │   ├── timeSlotRoutes.js
+│   │   ├── trash
+│   │   │   ├── auth copy.js.txt
+│   │   │   └── shopRoutes copy.js.txt
+│   │   └── userRoutes.js
+│   ├── services
+│   │   └── userService.js
+│   ├── utils
+│   │   ├── generateToken.js
+│   │   ├── hashPassword.js
+│   │   ├── logger.js
+│   │   └── prisma.js
+│   └── workers
+│       └── appointmentWorker.js
+└── uploads
+    ├── files
+    ├── qr
+    └── qrcode
+    └── avatar
+    └── documents

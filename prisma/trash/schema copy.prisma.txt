@@ -1,0 +1,90 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int       @id @default(autoincrement())
+  email     String    @unique
+  password  String
+  name      String
+  createdAt DateTime  @default(now())
+  bookings  Booking[]
+  emailVerified  Boolean   @default(false)
+  otps     Otp[]
+  sessions Session[]
+}
+
+model Shop {
+  id        Int       @id @default(autoincrement())
+  name      String    @db.VarChar(100)
+  location  String    @db.VarChar(255)
+  createdAt DateTime  @default(now())
+  bookings  Booking[]
+}
+
+model Booking {
+  id        Int      @id @default(autoincrement())
+  shopId    Int
+  shop      Shop     @relation(fields: [shopId], references: [id])
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  date      DateTime
+  hour      Int      @default(0)
+  createdAt DateTime @default(now())
+
+  @@unique([shopId, date, hour])
+  @@index([shopId])
+  @@index([userId])
+  @@index([createdAt])
+}
+
+model ShopCache {
+  id              Int      @id @default(autoincrement())
+  page            Int
+  limit           Int
+  data            Json
+  cacheTimestamp  DateTime @default(now()) @map("cache_timestamp")
+  cacheExpiration DateTime
+
+  @@unique([page, limit])
+}
+
+model Otp {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  otp       String
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Session {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  token     String
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+}
+
+model TimeSlot {
+  id        Int      @id @default(autoincrement())
+  hour      Int
+  date      DateTime
+  shopId    Int
+  shop      Shop     @relation(fields: [shopId], references: [id])
+}
