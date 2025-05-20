@@ -187,8 +187,8 @@ MIT
 ---
 
 ## Contact
-- Maintainer: [Sharif Darjen Kyle E. Abdulhamid/Team]
-- Issues: [GitHub Issues URL]
+- Maintainer: [Sharif Darjen Kyle E. Abdulhamid/Bullkit]
+- Issues: https://github.com/Sharif0104/api/issues
 
 ---
 
