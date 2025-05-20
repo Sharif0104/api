@@ -1,5 +1,5 @@
 const bcrypt = require("bcrypt");
-const { createUser, findUserByEmail, updateUserPassword, storeOtp, getStoredOtp } = require("../services/userService");
+const { encrypt, hash } = require("../utils/encryption");
 const generateToken = require("../utils/generateToken");
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
@@ -28,28 +28,128 @@ const validateRegistration = (req, res, next) => {
   next();
 };
 
+// Inline userService.js logic:
+const createUser = async (data) => {
+  // Always use hash for email lookup and storage
+  const emailHash = hash(data.email);
+  const password = data.passwordHashed || await bcrypt.hash(data.password, 12);
+  return prisma.user.create({ data: { ...data, emailHash, password } });
+};
+const findUserByEmail = async (email) => {
+  try {
+    // Always use hash for email lookup
+    const hashedEmail = hash(email);
+    return await prisma.user.findUnique({ where: { emailHash: hashedEmail } });
+  } catch (e) {
+    console.error('findUserByEmail error:', e);
+    throw e;
+  }
+};
+const updateUserPassword = async (userId, hashedPassword) => {
+  return prisma.user.update({
+    where: { id: userId },
+    data: { password: hashedPassword },
+  });
+};
+const storeOtp = async (userId, otp, expiresAt) => {
+  try {
+    const expirationDate = new Date(expiresAt);
+    await prisma.otp.create({
+      data: {
+        userId,
+        otp,
+        expiresAt: expirationDate
+      }
+    });
+  } catch (error) {
+    console.error("Error storing OTP:", error);
+    throw error;
+  }
+};
+const getStoredOtp = async (userId) => {
+  try {
+    const otp = await prisma.otp.findFirst({
+      where: { userId },
+      orderBy: { createdAt: "desc" },
+    });
+    if (!otp) {
+      throw new Error("No OTP found for this user.");
+    }
+    if (Date.now() > otp.expiresAt.getTime()) {
+      throw new Error("OTP has expired.");
+    }
+    return otp;
+  } catch (error) {
+    console.error("Error fetching OTP:", error);
+    throw error;
+  }
+};
+
 // Function to register a new user
 exports.register = async (req, res) => {
   try {
-    const { email, password, name } = req.body;
-    if (!email || !password || !name) {
-      return res.status(400).json({ message: "All fields (email, password, name) are required" });
+    const { email, password, name, phoneNumber, dateOfBirth, gender, location, username } = req.body;
+    console.log('[REGISTER] Attempt:', { email, username, phoneNumber, ip: req.ip, headers: req.headers });
+    if (!email || !password || !name || !phoneNumber || !dateOfBirth || !gender || !location || !username) {
+      console.warn('[REGISTER] Missing fields:', { body: req.body });
+      return res.status(400).json({ message: "All fields (email, password, name, phoneNumber, dateOfBirth, gender, location, username) are required" });
     }
-
-    const existing = await prisma.user.findUnique({ where: { email } });
-    if (existing) return res.status(409).json({ message: "User already exists" });
-
-    const hashedPassword = await hashPassword(password);
-
-    const user = await prisma.user.create({
-      data: { email, password: hashedPassword, name }
+    // Check uniqueness (encrypt email for lookup)
+    const [existingEmail, existingUsername, existingPhone] = await Promise.all([
+      prisma.user.findUnique({ where: { emailHash: hash(email) } }),
+      prisma.user.findUnique({ where: { username } }),
+      prisma.user.findUnique({ where: { phoneNumber } })
+    ]);
+    if (existingEmail) {
+      console.warn('[REGISTER] Email exists:', { email });
+      return res.status(409).json({ message: "Email already exists" });
+    }
+    if (existingUsername) {
+      console.warn('[REGISTER] Username exists:', { username });
+      return res.status(409).json({ message: "Username already exists" });
+    }
+    if (existingPhone) {
+      console.warn('[REGISTER] Phone exists:', { phoneNumber });
+      return res.status(409).json({ message: "Phone number already exists" });
+    }
+    // Age restriction (18+)
+    const dob = new Date(dateOfBirth);
+    const today = new Date();
+    const age = today.getFullYear() - dob.getFullYear() - (today < new Date(today.getFullYear(), dob.getMonth(), dob.getDate()) ? 1 : 0);
+    if (age < 18) {
+      console.warn('[REGISTER] Age restriction failed:', { email, dob, age });
+      return res.status(400).json({ message: "You must be at least 18 years old to register." });
+    }
+    // Find the 'user' role
+    let userRole = await prisma.role.findUnique({ where: { name: 'user' } });
+    if (!userRole) {
+      userRole = await prisma.role.create({ data: { name: 'user' } });
+      console.log('[REGISTER] Created user role:', { id: userRole.id });
+    }
+    // Create user and assign 'user' role
+    const user = await createUser({
+      email,
+      password, // pass plain password, createUser will hash it
+      name,
+      phoneNumber,
+      dateOfBirth: dob,
+      gender,
+      location,
+      username,
+      roles: {
+        connect: [{ id: userRole.id }]
+      }
     });
-
+    console.log('[REGISTER] User registered:', { id: user.id, email: user.email, username: user.username });
     const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, { expiresIn: '1h' });
     res.status(201).json({ token });
   } catch (e) {
-    console.error('Registration error:', e);
-    res.status(500).json({ error: "Registration failed, please try again later" });
+    console.error('[REGISTER] Error:', { error: e.message, stack: e.stack, body: req.body, headers: req.headers, ip: req.ip });
+    res.status(500).json({ 
+      error: "Registration failed, please try again later", 
+      details: e.message, 
+      stack: e.stack 
+    });
   }
 };
 
@@ -145,37 +245,45 @@ exports.verifyEmail = async (req, res) => {
 // Function to log in a user
 exports.login = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { email, password, twoFactorCode } = req.body;
+    console.log('[LOGIN] Attempt:', { email, ip: req.ip, headers: req.headers });
     const user = await findUserByEmail(email);
-    if (!user) return res.status(404).json({ message: "User not found" });
+    if (!user) {
+      console.warn('[LOGIN] User not found:', { email });
+      return res.status(404).json({ message: "User not found" });
+    }
+    console.log('[LOGIN] User found:', { id: user.id, email: user.email, username: user.username, isTwoFactorEnabled: user.isTwoFactorEnabled });
     const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) return res.status(401).json({ message: "Invalid creds" });
-    
-    // Enforce 2FA during login
-    // if (!user.twoFactorSecret) {
-    //   return res.status(403).json({ message: 'Two-factor authentication is required.' });
-    // }
-        // If 2FA is enabled, verify the code
+    if (!isMatch) {
+      console.warn('[LOGIN] Invalid password for user:', { id: user.id, email: user.email });
+      return res.status(401).json({ message: "Invalid credentials" });
+    }
     if (user.isTwoFactorEnabled) {
       if (!twoFactorCode) {
+        console.warn('[LOGIN] 2FA required but not provided:', { id: user.id, email: user.email });
         return res.status(403).json({ message: "Two-factor authentication is required." });
       }
-
       const isVerified = speakeasy.totp.verify({
         secret: user.twoFactorSecret,
         encoding: 'base32',
         token: twoFactorCode,
       });
-
       if (!isVerified) {
+        console.warn('[LOGIN] Invalid 2FA code for user:', { id: user.id, email: user.email });
         return res.status(401).json({ message: "Invalid 2FA code" });
       }
+      console.log('[LOGIN] 2FA verified for user:', { id: user.id, email: user.email });
     }
-
     const token = generateToken(user);
+    console.log('[LOGIN] Success, token generated for user:', { id: user.id, email: user.email });
     res.json({ token });
-  } catch {
-    res.status(500).json({ error: "Login failed" });
+  } catch (e) {
+    console.error('[LOGIN] Error:', { error: e.message, stack: e.stack, body: req.body, headers: req.headers, ip: req.ip });
+    res.status(500).json({ 
+      error: "Login failed", 
+      details: e.message, 
+      stack: e.stack 
+    });
   }
 };
 
@@ -201,7 +309,7 @@ exports.logout = async (req, res) => {
 // Function to get the current logged-in user's details
 exports.getCurrentUser = async (req, res) => {
   try {
-    const { id } = req.user
+    const { id } = req.user;
     const user = await prisma.user.findUnique({
       where: { id },
       select: {
@@ -209,13 +317,14 @@ exports.getCurrentUser = async (req, res) => {
         email: true,
         name: true,
         createdAt: true,
-        emailVerified: true
+        emailVerified: true,
+        roles: true
       }
-    })
-    if (!user) return res.status(404).json({ message: 'User not found' })
-    res.status(200).json(user)
+    });
+    if (!user) return res.status(404).json({ message: 'User not found' });
+    res.status(200).json(user);
   } catch {
-    res.status(500).json({ message: 'Failed to retrieve user profile' })
+    res.status(500).json({ message: 'Failed to retrieve user profile' });
   }
 }
 
@@ -438,6 +547,111 @@ exports.revokeSession = async (req, res) => {
   } catch (error) {
     console.error("Error in revokeSession:", error);
     res.status(500).json({ message: "Failed to revoke session" });
+  }
+};
+
+// Function to update a user's role
+exports.updateUserRole = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { role } = req.body;
+    const allowedSelfRoles = ["farmer", "shopOwner"];
+    const allowedAdminRoles = ["admin", "user"];
+    const isAdmin = req.user && req.user.role === "admin";
+    const isSelf = req.user && (String(req.user.id) === String(id));
+
+    if (!role) {
+      return res.status(400).json({ message: 'Role is required' });
+    }
+
+    if (allowedAdminRoles.includes(role)) {
+      if (!isAdmin) {
+        return res.status(403).json({ message: 'Only admin can set role to admin or user' });
+      }
+    } else if (allowedSelfRoles.includes(role)) {
+      if (!isSelf && !isAdmin) {
+        return res.status(403).json({ message: 'You can only set your own role to farmer or shopOwner' });
+      }
+    } else {
+      return res.status(400).json({ message: 'Invalid role' });
+    }
+
+    const user = await prisma.user.update({
+      where: { id: Number(id) },
+      data: { role },
+      select: {
+        id: true,
+        email: true,
+        name: true,
+        roles: true,
+        createdAt: true,
+        emailVerified: true
+      }
+    });
+    res.status(200).json(user);
+  } catch (error) {
+    console.error('Error updating user role:', error);
+    res.status(500).json({ message: 'Failed to update user role' });
+  }
+};
+
+// Function to update a user's roles using the Roles model (dynamic roles from DB)
+exports.updateUserRoles = async (req, res) => {
+  try {
+    const { id } = req.params;
+    let { roles } = req.body; // roles: array of role names (e.g., ["farmer", "shopOwner"])
+    if (!Array.isArray(roles) || roles.length === 0) {
+      return res.status(400).json({ message: 'Roles array is required' });
+    }
+
+    // Always include 'user' role
+    if (!roles.includes('user')) {
+      roles.push('user');
+    }
+
+    // Fetch all roles from the Role table
+    const allRoles = await prisma.role.findMany();
+    const foundRoles = allRoles.filter(r => roles.includes(r.name));
+    if (foundRoles.length !== roles.length) {
+      return res.status(400).json({ message: 'One or more roles are invalid' });
+    }
+
+    // Determine admin roles dynamically
+    const adminRoles = allRoles.filter(r => r.name === "admin" || r.name === "user").map(r => r.name);
+    const isAdmin = req.user && req.user.roles && req.user.roles.some(r => r.name === "admin");
+    const isSelf = req.user && (String(req.user.id) === String(id));
+    if (foundRoles.some(r => adminRoles.includes(r.name))) {
+      if (!isAdmin) {
+        return res.status(403).json({ message: 'Only admin can assign admin or user roles' });
+      }
+    } else {
+      // For non-admin roles, only self or admin can assign
+      if (!isSelf && !isAdmin) {
+        return res.status(403).json({ message: 'You can only set your own roles unless you are admin' });
+      }
+    }
+
+    // Update user roles (replace all roles, but always include 'user')
+    const user = await prisma.user.update({
+      where: { id: Number(id) },
+      data: {
+        roles: {
+          set: foundRoles.map(r => ({ id: r.id }))
+        }
+      },
+      select: {
+        id: true,
+        email: true,
+        name: true,
+        roles: true,
+        createdAt: true,
+        emailVerified: true
+      }
+    });
+    res.status(200).json(user);
+  } catch (error) {
+    console.error('Error updating user roles:', error);
+    res.status(500).json({ message: 'Failed to update user roles' });
   }
 };
 

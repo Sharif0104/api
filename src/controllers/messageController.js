@@ -14,7 +14,7 @@ exports.getMessages = async (req, res) => {
         const messages = await prisma.message.findMany({
             where: { conversationId: parseInt(conversationId, 10) },
             include: {
-                user: { select: { name: true, email: true } }
+                messageReads: { where: { userId: req.user.id }, select: { readAt: true } }
             }
         });
 
@@ -25,29 +25,31 @@ exports.getMessages = async (req, res) => {
         res.json({ messages });
     } catch (error) {
         console.error('Error fetching messages:', error);
-        res.status(500).json({ error: 'Server error' });
+        res.status(500).json({ error: 'Server error', details: error.message, stack: error.stack });
     }
 };
 
 // Enhanced error handling for sendMessage
 exports.sendMessage = async (req, res) => {
     const { conversationId } = req.params;
-    const { userId, content } = req.body;
+    const { content, attachmentUrl } = req.body;
+    const userId = req.user.id;
 
     if (!conversationId || isNaN(conversationId)) {
         return res.status(400).json({ error: 'Invalid conversation ID' });
     }
 
-    if (!userId || !content) {
-        return res.status(400).json({ error: 'User ID and content are required' });
+    if (!content && !attachmentUrl) {
+        return res.status(400).json({ error: 'Content or attachmentUrl is required' });
     }
 
     try {
         const message = await prisma.message.create({
             data: {
                 conversationId: parseInt(conversationId, 10),
-                userId: parseInt(userId, 10),
-                content
+                userId: userId,
+                content: content || '',
+                attachmentUrl: attachmentUrl || null
             }
         });
 
@@ -103,8 +105,20 @@ exports.createConversation = async (req, res) => {
     if (!userId1 || !userId2 || userId1 === userId2) {
         return res.status(400).json({ error: 'Invalid user IDs' });
     }
-
     try {
+        // Check if users are friends (in either direction)
+        const areFriends = await prisma.friendship.findFirst({
+            where: {
+                OR: [
+                    { userId1: parseInt(userId1, 10), userId2: parseInt(userId2, 10) },
+                    { userId1: parseInt(userId2, 10), userId2: parseInt(userId1, 10) }
+                ]
+            }
+        });
+        if (!areFriends) {
+            return res.status(403).json({ error: 'Users must be friends to start a chat.' });
+        }
+
         const existingConversation = await prisma.conversation.findFirst({
             where: {
                 OR: [
@@ -113,18 +127,15 @@ exports.createConversation = async (req, res) => {
                 ]
             }
         });
-
         if (existingConversation) {
             return res.status(400).json({ error: 'Conversation already exists' });
         }
-
         const conversation = await prisma.conversation.create({
             data: {
                 user1Id: parseInt(userId1, 10),
                 user2Id: parseInt(userId2, 10)
             }
         });
-
         res.status(201).json({ conversation });
     } catch (error) {
         console.error('Error creating conversation:', error);
@@ -200,6 +211,38 @@ exports.contactOwner = async (req, res) => {
         res.status(200).json({ message: 'Your message has been successfully delivered.' });
     } catch (error) {
         console.error('Error sending message to owner:', error);
+        res.status(500).json({ error: 'Server error' });
+    }
+};
+
+// Mark a message as read by the authenticated user
+exports.markMessageRead = async (req, res) => {
+    const { messageId } = req.params;
+    const userId = req.user.id;
+
+    if (!messageId || isNaN(messageId)) {
+        return res.status(400).json({ error: 'Invalid message ID' });
+    }
+
+    try {
+        // Create or update the MessageRead record
+        const messageRead = await prisma.messageRead.upsert({
+            where: {
+                messageId_userId: {
+                    messageId: parseInt(messageId, 10),
+                    userId: userId
+                }
+            },
+            update: { readAt: new Date() },
+            create: {
+                messageId: parseInt(messageId, 10),
+                userId: userId,
+                readAt: new Date()
+            }
+        });
+        res.status(200).json({ message: 'Message marked as read', messageRead });
+    } catch (error) {
+        console.error('Error marking message as read:', error);
         res.status(500).json({ error: 'Server error' });
     }
 };

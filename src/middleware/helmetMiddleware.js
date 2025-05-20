@@ -1,3 +1,1 @@
-const helmet = require("../config/helmetConfig");
-
-module.exports = { helmet };
+module.exports = require("../config/helmetConfig");

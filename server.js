@@ -1,7 +1,6 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-const https = require("https");
 const fs = require("fs");
 const socketIo = require("socket.io");
 const { applySecurity } = require('./src/middleware/security');
@@ -23,12 +22,16 @@ const nodemailer = require("nodemailer");
 const sequelize = require('./src/config/db');
 const path = require('path');
 const redis = require("redis");
+const { swaggerUi, swaggerSpec } = require('./src/config/swagger');
+const { register, httpRequestCounter, httpRequestDuration } = require('./src/utils/metrics');
 
 const orderRoutes = require('./src/routes/orderRoutes');
 const productRoutes = require("./src/routes/productRoutes");
 const contactRoutes = require("./src/routes/contactRoutes");
 const searchRoutes = require('./src/routes/searchRoutes');
 const inventoryRoutes = require('./src/routes/inventoryRoutes');
+const auditRoutes = require('./src/routes/auditRoutes');
+// const farmInventoryRoutes = require("./src/routes/farmInventoryRoutes"); // REMOVED: use /inventory for both shop and farm inventory
 
 const logStream = fs.createWriteStream('app.log', { flags: 'a' });
 
@@ -43,58 +46,24 @@ console.error = function (message) {
 };
 
 const app = express();
-const sslOptions = {
-  key: fs.readFileSync("/etc/letsencrypt/live/play.sharifwebz.xyz/privkey.pem"),
-  cert: fs.readFileSync("/etc/letsencrypt/live/play.sharifwebz.xyz/fullchain.pem"),
-};
-const allowedOrigins = [
-  "http://209.25.142.16:1966",
-  "https://play.sharifwebz.xyz:1966",
-  "http://192.168.1.33:1966",
-  "https://sharifwebz.xyz"
-];
+app.set('trust proxy', 1); // Trust first proxy (fixes X-Forwarded-For warning)
 
-const { startAppointmentWorker } = require('./src/workers/appointmentWorker');
-startAppointmentWorker();
-
-const client = redis.createClient({
-  url: `redis://:${process.env.REDIS_PASSWORD}@${process.env.REDIS_HOST}:${process.env.REDIS_PORT}`
-});
-client.connect().catch(console.error);
-
-app.set("trust proxy", 1);
-
-const { maintenanceMiddleware } = require('./src/middleware/maintenanceMiddleware');
+// Import corsMiddleware at the top
 const { corsMiddleware } = require('./src/middleware/corsMiddleware');
-const { hppMiddleware } = require('./src/middleware/hppMiddleware');
-const { rateLimiter } = require('./src/middleware/rateLimiterMiddleware');
-const { helmet } = require('./src/middleware/helmetMiddleware');
-const { validateApiKey } = require('./src/middleware/apiKeyMiddleware');
-
-const csurf = require("csurf");
+const allowedOrigins = [
+  "https://sharifwebz.xyz",
+];
 const cookieParser = require("cookie-parser");
+const { hppMiddleware } = require('./src/middleware/hppMiddleware');
+const { validateApiKey } = require('./src/middleware/apiKeyMiddleware');
+const helmet = require('./src/middleware/helmetMiddleware');
+const rateLimiter = require('./src/middleware/rateLimiter');
+const { maintenanceMiddleware } = require('./src/middleware/maintenanceMiddleware');
+const urlParameterMiddleware = require('./src/middleware/urlParameterMiddleware');
 
-const morgan = require("morgan");
-const compression = require("compression");
-const { body, validationResult } = require("express-validator");
-
-// Enable HTTP request logging with Morgan
-app.use(morgan("combined"));
-
-// Enable Gzip compression for responses
-app.use(compression());
-
-// Example usage of express-validator for input validation
-// app.post('/example', [
-//   body('email').isEmail(),
-//   body('password').isLength({ min: 5 })
-// ], (req, res) => {
-//   const errors = validationResult(req);
-//   if (!errors.isEmpty()) {
-//     return res.status(400).json({ errors: errors.array() });
-//   }
-//   res.send('Input is valid');
-// });
+// --- MOVE CORS MIDDLEWARE TO THE VERY TOP ---
+app.use(corsMiddleware);
+// -------------------------------------------
 
 // Enable cookie parsing for CSRF token handling
 app.use(cookieParser());
@@ -103,42 +72,119 @@ app.use(cookieParser());
 const csrf = require('csurf');
 const csrfProtection = csrf({ cookie: true });
 
-// Apply CSRF protection to all routes except image caching
-app.use((req, res, next) => {
-  if (req.path.startsWith('/cache/image')) {
-    return next(); // Skip CSRF for image caching routes
-  }
-  csrfProtection(req, res, next);
+// Professional: Expose a CSRF token endpoint for API clients
+app.get('/api/v1/auth/csrf', csrfProtection, (req, res) => {
+  res.json({ csrfToken: req.csrfToken() });
 });
 
+// Professional: Add robust CSRF error logging and response
+app.use((err, req, res, next) => {
+  if (err.code === 'EBADCSRFTOKEN') {
+    console.error('CSRF error:', {
+      url: req.originalUrl,
+      headers: req.headers,
+      cookies: req.cookies,
+      body: req.body,
+    });
+    return res.status(403).json({ message: 'Invalid CSRF token' });
+  }
+  next(err);
+});
+
+// Move /csrf-token route after CORS middleware
 // Route to provide CSRF token to clients
-app.get("/csrf-token", (req, res) => {
+app.get("/csrf-token", csrfProtection, (req, res) => {
   res.json({ csrfToken: req.csrfToken() });
 });
 
 // Move express.json() middleware to ensure it is applied before route definitions
 app.use(express.json());
 
-// Public routes that don't require middleware
-app.use('/uploads/files', express.static(path.join(__dirname, 'uploads/files')));
-app.use('/api/upload/images', express.static('uploads/images'));
-app.use('/', apiRoutes);
-app.use('/', searchRoutes);
-app.use('/', inventoryRoutes);
+// Public static serving for uploads/public (public images)
+app.use('/uploads/public', express.static(path.join(__dirname, 'uploads/public')));
+
+// Remove public static serving for uploads/files and images
+// app.use('/uploads/files', express.static(path.join(__dirname, 'uploads/files')));
+// app.use('/api/v1/upload/images', express.static('uploads/images'));
+
+// Secure file download endpoint (private images)
+const auth = require('./src/middleware/auth');
+app.get('/uploads/files/:filename', auth, (req, res) => {
+  const filePath = path.join(__dirname, 'uploads/files', req.params.filename);
+  if (fs.existsSync(filePath)) {
+    res.sendFile(filePath);
+  } else {
+    res.status(404).send({ message: 'File not found' });
+  }
+});
+
+// Secure image download endpoint (private images)
+app.get('/api/v1/upload/images/:imageId', auth, (req, res) => {
+  const { imageId } = req.params;
+  const imagePath = path.join(__dirname, 'uploads/images', imageId);
+
+  client.get(imageId, (err, cachedImage) => {
+    if (cachedImage) {
+      res.set('Content-Type', 'image/png');
+      return res.send(cachedImage);
+    }
+
+    fs.readFile(imagePath, (err, imageBuffer) => {
+      if (err) return res.status(404).send('Image not found');
+      client.setex(imageId, 3600, imageBuffer);
+      res.set('Content-Type', 'image/png');
+      res.send(imageBuffer);
+    });
+  });
+});
+
+// FIX: Mount routers at unique base paths to avoid conflicts
+app.use('/api/v1', apiRoutes);
+app.use('/api/v1/search', searchRoutes);
+app.use('/api/v1/inventory', inventoryRoutes);
 
 // Apply middleware
 app.use(corsMiddleware);
 app.use(hppMiddleware);
-app.use(validateApiKey);
+app.use(maintenanceMiddleware);
+app.use(urlParameterMiddleware); // Professional URL parameter handler
+
+// Only apply API key and CSRF middleware if not in test environment
+if (process.env.NODE_ENV !== 'test') {
+  app.use(validateApiKey);
+  app.use((req, res, next) => {
+    if (req.path.startsWith('/cache/image')) {
+      return next();
+    }
+    csrfProtection(req, res, next);
+  });
+}
+
 app.use(helmet);
 app.use(rateLimiter);
-app.use(maintenanceMiddleware);
+
+// Metrics middleware
+app.use((req, res, next) => {
+  const end = httpRequestDuration.startTimer({ method: req.method, route: req.path });
+  res.on('finish', () => {
+    httpRequestCounter.inc({ method: req.method, route: req.path, status_code: res.statusCode });
+    end({ status_code: res.statusCode });
+  });
+  next();
+});
+
+// Expose /metrics endpoint for Prometheus
+app.get('/metrics', async (req, res) => {
+  res.set('Content-Type', register.contentType);
+  res.end(await register.metrics());
+});
 
 sequelize.authenticate()
   .then(() => console.log('Database connected'))
   .catch(err => console.log('Error:', err));
 
-app.options("*", cors());
+// Remove or update app.options to use custom CORS middleware
+app.options("*", corsMiddleware);
 
 app.use((req, res, next) => {
   next();
@@ -152,63 +198,109 @@ app.use((req, res, next) => {
 applySecurity(app);
 
 // Define protected API routes
-app.use('/api/shops', shopRoutes);
-app.use('/api/shops/availability', availabilityRoutes);
-app.use('/api/shops/timeslots', timeSlotRoutes);
-app.use('/api/appointments', appointmentRoutes);
-app.use('/api/users', userRoutes);
-app.use('/api/auth', authRoutes);
-app.use('/api/minecraft', minecraftRoutes);
-app.use('/api/speedtest', speedTestRouter);
-app.use('/api/upload', UploadRoutes);
-app.use('/notifications', notificationsRouter);
-app.use('/api', orderRoutes);
-app.use("/api", productRoutes);
-app.use("/friends", friendRoutes);
-app.use("/messages", messageRoutes);
-app.use("/api", contactRoutes);
+app.use('/api/v1/shops', shopRoutes);
+app.use('/api/v1/shops/availability', availabilityRoutes);
+app.use('/api/v1/shops/timeslots', timeSlotRoutes);
+app.use('/api/v1/appointments', appointmentRoutes);
+app.use('/api/v1/users', userRoutes);
+app.use('/api/v1/auth', authRoutes);
+app.use('/api/v1/minecraft', minecraftRoutes);
+app.use('/api/v1/speedtest', speedTestRouter);
+app.use('/api/v1/upload', UploadRoutes);
+app.use('/api/v1/notifications', notificationsRouter);
+app.use('/api/v1/orders', orderRoutes);
+app.use('/api/v1/products', productRoutes);
+app.use('/api/v1/friends', friendRoutes);
+app.use('/api/v1/messages', messageRoutes);
+app.use('/api/v1/contact', contactRoutes);
+app.use('/api/v1/audit', auditRoutes);
+// app.use("/api/farminventories", farmInventoryRoutes); // REMOVED: use /inventory for both shop and farm inventory
 
-app.get('/api/upload/images/:imageId', (req, res) => {
-  const { imageId } = req.params;
-  const imagePath = path.join(__dirname, 'uploads/images', imageId);
-
-  client.get(imageId, (err, cachedImage) => {
-    if (cachedImage) {
-      res.set('Content-Type', 'image/png');
-      return res.send(cachedImage);
-    }
-
-    fs.readFile(imagePath, (err, imageBuffer) => {
-      if (err) return res.status(404).send('Image not found');
-      
-      client.setex(imageId, 3600, imageBuffer);
-      res.set('Content-Type', 'image/png');
-      res.send(imageBuffer);
-    });
-  });
+const client = redis.createClient({
+  url: `redis://:${process.env.REDIS_PASSWORD}@${process.env.REDIS_HOST}:${process.env.REDIS_PORT}`
 });
+let appointmentWorker;
+try {
+  const { startAppointmentWorker } = require('./src/workers/appointmentWorker');
+  appointmentWorker = startAppointmentWorker();
+} catch (e) {
+  console.error('Could not start appointment worker:', e);
+}
 
-const server = https.createServer(sslOptions, app);
+const cluster = require('cluster');
+const os = require('os');
 
-const io = socketIo(server, {
-  cors: {
-    origin: allowedOrigins,
-    methods: ["GET", "POST"],
+if (cluster.isMaster) {
+  // Limit to 2 workers for WSL2/Windows 10 stability
+  const numCPUs = Math.min(os.cpus().length, 2);
+  console.log(`Master process ${process.pid} is running. Forking ${numCPUs} workers...`);
+  for (let i = 0; i < numCPUs; i++) {
+    cluster.fork();
   }
-});
-
-io.on("connection", (socket) => {
-  console.log("A user connected");
-
-  socket.on("disconnect", () => {
-    console.log("User disconnected");
+  cluster.on('exit', (worker, code, signal) => {
+    console.log(`Worker ${worker.process.pid} died. Forking a new worker...`);
+    cluster.fork();
   });
+} else {
+  if (require.main === module) {
+    // Use HTTP server if SSL is not required
+    const server = app.listen(process.env.PORT, () => {
+      console.log(`Worker ${process.pid} running on port ${process.env.PORT}`);
+    });
+    const io = socketIo(server, {
+      cors: {
+        origin: allowedOrigins,
+        methods: ["GET", "POST"],
+      }
+    });
+    io.on("connection", (socket) => {
+      console.log("A user connected");
+      socket.on("disconnect", () => {
+        console.log("User disconnected");
+      });
+      socket.on("chat_message", (msg) => {
+        io.emit("chat_message", msg);
+      });
+    });
+    // --- Graceful Shutdown Implementation ---
+    const shutdown = async () => {
+      console.log('Received shutdown signal, closing server and resources...');
+      server.close(() => {
+        console.log('HTTP server closed.');
+        // Close DB connection
+        if (sequelize && sequelize.close) {
+          sequelize.close().then(() => {
+            console.log('Database connection closed.');
+          });
+        }
+      });
+      // Close Redis
+      if (client && client.quit) {
+        client.quit(() => console.log('Redis client closed.'));
+      }
+      // Close BullMQ worker
+      if (appointmentWorker && appointmentWorker.close) {
+        try {
+          await appointmentWorker.close();
+          console.log('Appointment worker closed.');
+        } catch (err) {
+          console.error('Error closing appointment worker:', err);
+        }
+      }
+      // Force exit if not closed in 10s
+      setTimeout(() => {
+        console.error('Force exiting after 10s.');
+        process.exit(1);
+      }, 10000);
+    };
+    process.on('SIGTERM', shutdown);
+    process.on('SIGINT', shutdown);
+    // --- End Graceful Shutdown ---
+  }
+}
 
-  socket.on("chat_message", (msg) => {
-    io.emit("chat_message", msg);
-  });
-});
+const errorHandler = require('./src/middleware/errorHandler');
+app.use(errorHandler);
 
-server.listen(process.env.PORT, () =>
-  console.log(`Server running on port ${process.env.PORT}`)
-);
+// Export the app for testing and integration
+module.exports = app;

@@ -2,7 +2,8 @@ const prisma = require("../utils/prisma");
 
 exports.sendFriendRequest = async (req, res) => {
   try {
-    const { senderId, receiverId } = req.body;
+    const senderId = req.user.id; // Always use authenticated user
+    const { receiverId } = req.body;
     if (senderId === receiverId) {
       return res.status(400).json({ message: "Cannot send friend request to yourself" });
     }
@@ -18,7 +19,8 @@ exports.sendFriendRequest = async (req, res) => {
 
 exports.acceptFriendRequest = async (req, res) => {
   try {
-    const { senderId, receiverId } = req.body;
+    const receiverId = req.user.id; // Only authenticated user can accept
+    const { senderId } = req.body;
     const request = await prisma.friendRequest.findUnique({
       where: { senderId_receiverId: { senderId, receiverId } }
     });

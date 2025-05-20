@@ -33,4 +33,19 @@ exports.startAppointmentWorker = () => {
 
   worker.on('completed', job => console.log(`Job ${job.id} done`));
   worker.on('failed', (job, err) => console.error(`Job ${job.id} failed`, err));
+
+  // Graceful shutdown support
+  const shutdown = async () => {
+    try {
+      await worker.close();
+      console.log('Appointment worker closed.');
+    } catch (err) {
+      console.error('Error closing appointment worker:', err);
+    }
+  };
+  process.on('SIGTERM', shutdown);
+  process.on('SIGINT', shutdown);
+
+  // Export for external shutdown if needed
+  return worker;
 };

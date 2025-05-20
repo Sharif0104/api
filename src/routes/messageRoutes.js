@@ -1,5 +1,5 @@
 const express = require("express");
-const { getMessages, sendMessage, getConversations, createConversation, getConversationId, contactOwner } = require("../controllers/messageController");
+const { getMessages, sendMessage, getConversations, createConversation, getConversationId, contactOwner, markMessageRead } = require("../controllers/messageController");
 const auth = require("../middleware/auth");  // Assuming you have an authentication middleware
 const router = express.Router();
 
@@ -21,5 +21,8 @@ router.get('/conversation-id', auth, getConversationId);  // Get conversation ID
 
 // Route to contact the owner
 router.post('/contact-owner', contactOwner);
+
+// Route to mark a message as read
+router.post('/messages/:messageId/read', auth, markMessageRead);
 
 module.exports = router;

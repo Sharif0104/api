@@ -1,9 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const { createAppointment, getAllAppointments, getAppointmentById, updateAppointment, deleteAppointment } = require("../controllers/appointmentController");
-router.post("/", createAppointment);
-router.get("/", getAllAppointments);
-router.get("/:id", getAppointmentById);
-router.put("/:id", updateAppointment);
-router.delete("/:id", deleteAppointment);
+const rbac = require('../middleware/rbac');
+const auth = require("../middleware/auth");
+const rateLimiter = require('../middleware/rateLimiter');
+router.post("/", auth, rateLimiter, rbac(['admin', 'user']), createAppointment);
+router.get("/", auth, rateLimiter, getAllAppointments);
+router.get("/:id", auth, rateLimiter, getAppointmentById);
+router.put("/:id", auth, rateLimiter, rbac(['admin', 'user']), updateAppointment);
+router.delete("/:id", auth, rateLimiter, rbac(['admin']), deleteAppointment);
 module.exports = router;

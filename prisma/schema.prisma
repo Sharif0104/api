@@ -16,6 +16,7 @@ datasource db {
 model User {
   id            Int       @id @default(autoincrement())
   email         String    @unique
+  emailHash     String   @unique // <-- Make required after backfill
   password      String
   name          String
   emailVerified Boolean   @default(false)
@@ -27,6 +28,27 @@ model User {
 
   sentRequests    FriendRequest[]  @relation("SentRequests")
   receivedRequests FriendRequest[] @relation("ReceivedRequests")
+
+  inventories Inventory[] // Relation to Inventory model (shop and farm inventory)
+  roles         Role[]   @relation("UserRoles")
+
+  friendships1 Friendship[] @relation("FriendshipUser1")
+  friendships2 Friendship[] @relation("FriendshipUser2")
+
+  ownedGroups Group[] @relation("GroupOwner")
+  groupMemberships GroupMember[]
+  groupMessages GroupMessage[]
+  groupChatsOwned    GroupChat[]       @relation("GroupChatOwner")
+  groupChatMembers   GroupChatMember[]
+  groupChatMessages  GroupChatMessage[]
+
+  username       String   @unique
+  phoneNumber    String   @unique
+  dateOfBirth    DateTime
+  gender         String
+  location       String
+
+  messageReads MessageRead[]
 }
 
 model Otp {
@@ -132,6 +154,7 @@ model Upload {
   originalName String
   metadata     Json?    // Field to store metadata
   createdAt    DateTime @default(now())
+  accessToken  String   @unique // Secure token for private access
 }
 
 model FriendRequest {
@@ -163,15 +186,120 @@ model Message {
   userId       Int
   content      String
   createdAt    DateTime  @default(now())
+  attachmentUrl String? // Optional URL to an uploaded file/image
+
+  messageReads MessageRead[]
+}
+
+model MessageRead {
+  id        Int      @id @default(autoincrement())
+  message   Message  @relation(fields: [messageId], references: [id])
+  messageId Int
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+  readAt    DateTime @default(now())
+
+  @@unique([messageId, userId])
 }
 
 model Inventory {
-  id       Int     @id @default(autoincrement())
-  name     String
-  quantity Int
-  price    Float
-  shopId   Int?    // Temporarily optional
-  shop     Shop?   @relation(fields: [shopId], references: [id])
+  id        Int     @id @default(autoincrement())
+  name      String
+  quantity  Int
+  price     Float
+  shopId    Int?    // For shop inventory
+  shop      Shop?   @relation(fields: [shopId], references: [id])
+  userId    Int?    // For farm inventory
+  user      User?   @relation(fields: [userId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Role {
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+  users User[] @relation("UserRoles")
+  @@map("Roles")
+}
+
+model Friendship {
+  id        Int      @id @default(autoincrement())
+  userId1   Int
+  userId2   Int
+  createdAt DateTime @default(now())
+
+  user1     User     @relation("FriendshipUser1", fields: [userId1], references: [id])
+  user2     User     @relation("FriendshipUser2", fields: [userId2], references: [id])
+
+  @@unique([userId1, userId2])
+}
+
+model Group {
+  id        Int      @id @default(autoincrement())
+  name      String
+  ownerId   Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  owner     User     @relation("GroupOwner", fields: [ownerId], references: [id])
+  members   GroupMember[]
+  messages  GroupMessage[]
+
+  @@map("groups")
+}
+
+model GroupMember {
+  id      Int   @id @default(autoincrement())
+  groupId Int
+  userId  Int
+
+  group   Group @relation(fields: [groupId], references: [id])
+  user    User  @relation(fields: [userId], references: [id])
+
+  @@unique([groupId, userId])
+}
+
+model GroupMessage {
+  id        Int      @id @default(autoincrement())
+  groupId   Int
+  userId    Int
+  content   String
+  createdAt DateTime @default(now())
+
+  group     Group @relation(fields: [groupId], references: [id])
+  user      User  @relation(fields: [userId], references: [id])
+}
+
+model GroupChat {
+  id        Int      @id @default(autoincrement())
+  name      String
+  ownerId   Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  owner     User     @relation("GroupChatOwner", fields: [ownerId], references: [id])
+  members   GroupChatMember[]
+  messages  GroupChatMessage[]
+}
+
+model GroupChatMember {
+  id          Int       @id @default(autoincrement())
+  groupChatId Int
+  userId      Int
+
+  groupChat   GroupChat @relation(fields: [groupChatId], references: [id])
+  user        User      @relation(fields: [userId], references: [id])
+
+  @@unique([groupChatId, userId])
+}
+
+model GroupChatMessage {
+  id          Int       @id @default(autoincrement())
+  groupChatId Int
+  userId      Int
+  content     String
+  createdAt   DateTime  @default(now())
+
+  groupChat   GroupChat @relation(fields: [groupChatId], references: [id])
+  user        User      @relation(fields: [userId], references: [id])
 }

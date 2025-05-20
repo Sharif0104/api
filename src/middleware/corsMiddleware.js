@@ -13,7 +13,7 @@ const corsMiddleware = cors({
     cb(new Error("Not allowed by CORS"));
   },
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization", "x-api-key"],
+  allowedHeaders: ["Content-Type", "Authorization", "x-api-key", "X-CSRF-Token"],
   credentials: true,
 });
 

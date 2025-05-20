@@ -65,18 +65,29 @@ exports.createAppointment = async (req, res) => {
 // Function to retrieve all appointments
 exports.getAllAppointments = async (req, res) => {
   try {
-    const appointments = await prisma.booking.findMany({
-      include: {
-        user: true,
-        shop: true,
-        availability: {
-          include: {
-            timeSlot: true
+    const { page = 1, pageSize = 10, userId, shopId, date } = req.query;
+    const skip = (parseInt(page, 10) - 1) * parseInt(pageSize, 10);
+    let where = {};
+    if (userId) where.userId = parseInt(userId, 10);
+    if (shopId) where.shopId = parseInt(shopId, 10);
+    if (date) where.date = new Date(date);
+    const [appointments, total] = await Promise.all([
+      prisma.booking.findMany({
+        where,
+        skip,
+        take: parseInt(pageSize, 10),
+        include: {
+          user: true,
+          shop: true,
+          availability: {
+            include: {
+              timeSlot: true
+            }
           }
         }
-      }
-    });
-
+      }),
+      prisma.booking.count({ where })
+    ]);
     const formattedAppointments = appointments.map(appointment => {
       const { timeSlot } = appointment.availability;
       return {
@@ -93,8 +104,7 @@ exports.getAllAppointments = async (req, res) => {
         }
       };
     });
-
-    res.status(200).json({ appointments: formattedAppointments });
+    res.status(200).json({ appointments: formattedAppointments, total, page: parseInt(page, 10), pageSize: parseInt(pageSize, 10) });
   } catch (error) {
     console.error("Error retrieving appointments:", error);
     res.status(500).json({ message: "Failed to retrieve appointments" });

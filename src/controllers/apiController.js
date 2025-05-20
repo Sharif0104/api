@@ -10,6 +10,42 @@ const cache = require('../utils/cache');
 const jobQueue = require('../utils/jobQueue');
 const logger = require('../utils/logger');
 
+// Helper function to format uptime in a human-readable way
+function formatUptime(seconds) {
+  const minute = 60;
+  const hour = 60 * minute;
+  const day = 24 * hour;
+  const week = 7 * day;
+  const month = 30 * day;
+  const year = 12 * month;
+
+  if (seconds < minute) return `${Math.floor(seconds)} seconds`;
+  if (seconds < hour) return `${Math.floor(seconds / minute)} minute${Math.floor(seconds / minute) === 1 ? '' : 's'}`;
+  if (seconds < day) return `${Math.floor(seconds / hour)} hour${Math.floor(seconds / hour) === 1 ? '' : 's'}`;
+  if (seconds < week) return `${Math.floor(seconds / day)} day${Math.floor(seconds / day) === 1 ? '' : 's'}`;
+  if (seconds < month) return `${Math.floor(seconds / week)} week${Math.floor(seconds / week) === 1 ? '' : 's'}`;
+  if (seconds < year) return `${Math.floor(seconds / month)} month${Math.floor(seconds / month) === 1 ? '' : 's'}`;
+  return `${Math.floor(seconds / year)} year${Math.floor(seconds / year) === 1 ? '' : 's'}`;
+}
+
+// Helper function to format uptime as timer 00:00:00:00:00 (years:months:days:hours:minutes:seconds)
+function formatUptimeTimer(seconds) {
+  const sec = Math.floor(seconds % 60);
+  const min = Math.floor((seconds / 60) % 60);
+  const hr = Math.floor((seconds / 3600) % 24);
+  const day = Math.floor((seconds / 86400) % 30);
+  const month = Math.floor((seconds / 2592000) % 12);
+  const year = Math.floor(seconds / 31104000);
+  return (
+    String(year).padStart(2, '0') + ':' +
+    String(month).padStart(2, '0') + ':' +
+    String(day).padStart(2, '0') + ':' +
+    String(hr).padStart(2, '0') + ':' +
+    String(min).padStart(2, '0') + ':' +
+    String(sec).padStart(2, '0')
+  );
+}
+
 // Function to get the health status of the application
 exports.getHealthStatus = (req, res) => {
   const uptime = process.uptime();
@@ -18,7 +54,7 @@ exports.getHealthStatus = (req, res) => {
   res.status(200).json({
     status: 'ok',
     timestamp: new Date().toISOString(),
-    uptime: `${Math.floor(uptime)} seconds`,
+    uptime: formatUptimeTimer(uptime),
     memory: {
       rss: memoryUsage.rss,
       heapTotal: memoryUsage.heapTotal,

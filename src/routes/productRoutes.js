@@ -1,32 +1,50 @@
 const express = require('express');
 const router = express.Router();
 const productController = require('../controllers/productController');
+const auth = require('../middleware/auth');
+const rateLimiter = require('../middleware/rateLimiter');
+const { body, validationResult } = require('express-validator');
 
-// GET /products
-router.get('/products', productController.getProducts);
+// Validation middleware for product
+const validateProduct = [
+  body('name').isString().notEmpty().withMessage('Name is required'),
+  body('price').isFloat({ min: 0 }).withMessage('Price must be a positive number'),
+  body('description').optional().isString(),
+  (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    next();
+  }
+];
 
-// GET /products/:id
-router.get('/products/:id', productController.getProductById);
+// Validation middleware for category
+const validateCategory = [
+  body('name').isString().notEmpty().withMessage('Category name is required'),
+  (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    next();
+  }
+];
 
-// POST /products
-router.post('/products', productController.createProduct);
-
-// PUT /products/:id
-router.put('/products/:id', productController.updateProduct);
-
-// DELETE /products/:id
-router.delete('/products/:id', productController.deleteProduct);
-
-// GET /categories
+// List products with pagination/filtering
+router.get('/', productController.getProducts);
+// Get product by ID
+router.get('/:id', productController.getProductById);
+// Create product (protected)
+router.post('/', auth, rateLimiter, validateProduct, productController.createProduct);
+// Update product (protected)
+router.put('/:id', auth, rateLimiter, validateProduct, productController.updateProduct);
+// Delete product (protected)
+router.delete('/:id', auth, rateLimiter, productController.deleteProduct);
+// Category routes
 router.get('/categories', productController.getCategories);
-
-// POST /categories
-router.post('/categories', productController.createCategory);
-
-// PUT /categories/:id
-router.put('/categories/:id', productController.updateCategory);
-
-// DELETE /categories/:id
-router.delete('/categories/:id', productController.deleteCategory);
+router.post('/categories', auth, rateLimiter, validateCategory, productController.createCategory);
+router.put('/categories/:id', auth, rateLimiter, validateCategory, productController.updateCategory);
+router.delete('/categories/:id', auth, rateLimiter, productController.deleteCategory);
 
 module.exports = router;
